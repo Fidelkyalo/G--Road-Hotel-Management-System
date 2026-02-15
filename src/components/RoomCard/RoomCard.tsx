@@ -27,7 +27,7 @@ const RoomCard: FC<Props> = props => {
     : coverImage?.url || '/images/placeholder.jpg';
 
   return (
-    <div className='rounded-xl w-72 mb-10 mx-auto md:mx-0 overflow-hidden text-black'>
+    <div className='rounded-xl w-full max-w-[320px] mb-10 mx-auto md:mx-0 overflow-hidden text-black shadow-md hover:shadow-xl transition-all duration-300'>
       <div className='h-60 overflow-hidden'>
         <Image
           src={imageUrl}

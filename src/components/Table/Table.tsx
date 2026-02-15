@@ -41,7 +41,7 @@ const Table: FC<Props> = ({
   };
 
   return (
-    <div className='overflow-x-auto max-w-[340px] rounded-lg mx-auto md:max-w-full shadow-md sm:rounded-lg'>
+    <div className='overflow-x-auto w-full rounded-lg mx-auto shadow-md sm:rounded-lg'>
       <table className='w-full text-sm text-left text-gray-500'>
         <thead className='text-xs text-gray-700 uppercase bg-gray-50'>
           <tr>

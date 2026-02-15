@@ -21,32 +21,32 @@ const Footer = () => {
 
         <h4 className='font-semibold text-[40px] py-6' id='contact'>Contact</h4>
 
-        <div className='flex flex-wrap gap-16 items-center justify-between'>
-          <div className='flex-1'>
+        <div className='flex flex-wrap gap-8 md:gap-16 items-start justify-between'>
+          <div className='w-full md:flex-1'>
             <p className='font-bold text-lg'>G- Road Hotel</p>
-            <div className='flex items-center py-4'>
+            <div className='flex items-center py-2 md:py-4'>
               <BsFillSendFill />
-              <p className='ml-2'>info@g-roadhotel.com</p>
+              <p className='ml-2 text-sm md:text-base'>info@g-roadhotel.com</p>
             </div>
             <div className='flex items-center'>
               <BsTelephoneOutbound />
-              <p className='ml-2'>+254112063383</p>
+              <p className='ml-2 text-sm md:text-base'>+254112063383</p>
             </div>
           </div>
 
-          <div className='flex-1 md:text-right'>
-            <p className='pb-4'>Our Story</p>
-            <p className='pb-4'>Get in Touch</p>
-            <p className='pb-4'>Our Privacy Commitment</p>
-            <p className='pb-4'>Terms of service</p>
+          <div className='w-1/2 md:flex-1 md:text-right text-sm md:text-base'>
+            <p className='pb-2 md:pb-4'>Our Story</p>
+            <p className='pb-2 md:pb-4'>Get in Touch</p>
+            <p className='pb-2 md:pb-4'>Our Privacy Commitment</p>
+            <p className='pb-2 md:pb-4'>Terms of service</p>
             <p>Customer Assistance</p>
           </div>
 
-          <div className='flex-1 md:text-right'>
-            <p className='pb-4'>Dining Experience</p>
-            <p className='pb-4'>Wellness</p>
-            <p className='pb-4'>Fitness</p>
-            <p className='pb-4'>Sports</p>
+          <div className='w-1/2 md:flex-1 md:text-right text-sm md:text-base'>
+            <p className='pb-2 md:pb-4'>Dining Experience</p>
+            <p className='pb-2 md:pb-4'>Wellness</p>
+            <p className='pb-2 md:pb-4'>Fitness</p>
+            <p className='pb-2 md:pb-4'>Sports</p>
             <p>Events</p>
           </div>
         </div>

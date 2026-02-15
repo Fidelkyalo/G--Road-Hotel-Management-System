@@ -25,17 +25,17 @@ const ClientComponent: FC<Props> = props => {
       <div className='h-full flex flex-col justify-center items-center z-10 w-full text-center'>
         {heading1}
 
-        <div className='flex justify-between mt-24 text-white gap-8 md:gap-16 bg-black/50 p-6 rounded-2xl backdrop-blur-md'>
-          <div className='flex gap-3 flex-col items-center justify-center'>
-            <p className='text-xs lg:text-xl text-center font-bold'>Basic Room</p>
+        <div className='flex flex-wrap md:flex-nowrap justify-center md:justify-between mt-12 md:mt-24 text-white gap-4 md:gap-16 bg-black/50 p-4 md:p-6 rounded-2xl backdrop-blur-md max-w-full overflow-hidden'>
+          <div className='flex gap-1 md:gap-3 flex-col items-center justify-center min-w-[80px]'>
+            <p className='text-[10px] md:text-xs lg:text-xl text-center font-bold'>Basic Room</p>
             <CountUpNumber duration={5000} endValue={50} />
           </div>
-          <div className='flex gap-3 flex-col items-center justify-center'>
-            <p className='text-xs lg:text-xl text-center font-bold'>Luxury Room</p>
+          <div className='flex gap-1 md:gap-3 flex-col items-center justify-center min-w-[80px]'>
+            <p className='text-[10px] md:text-xs lg:text-xl text-center font-bold'>Luxury Room</p>
             <CountUpNumber duration={5000} endValue={120} />
           </div>
-          <div className='flex gap-3 flex-col items-center justify-center'>
-            <p className='text-xs lg:text-xl text-center font-bold'>Suite</p>
+          <div className='flex gap-1 md:gap-3 flex-col items-center justify-center min-w-[80px]'>
+            <p className='text-[10px] md:text-xs lg:text-xl text-center font-bold'>Suite</p>
             <CountUpNumber duration={5000} endValue={60} />
           </div>
         </div>
