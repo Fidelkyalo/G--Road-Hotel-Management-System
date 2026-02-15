@@ -19,7 +19,7 @@ const Footer = () => {
           G- Road Hotel
         </Link>
 
-        <h4 className='font-semibold text-[40px] py-6' id='contact'>Contact</h4>
+        <h4 className='font-semibold text-[40px] py-6'>Contact</h4>
 
         <div className='flex flex-wrap gap-8 md:gap-16 items-start justify-between'>
           <div className='w-full md:flex-1'>
@@ -35,11 +35,11 @@ const Footer = () => {
           </div>
 
           <div className='w-1/2 md:flex-1 md:text-right text-sm md:text-base'>
-            <p className='pb-2 md:pb-4'>Our Story</p>
-            <p className='pb-2 md:pb-4'>Get in Touch</p>
-            <p className='pb-2 md:pb-4'>Our Privacy Commitment</p>
-            <p className='pb-2 md:pb-4'>Terms of service</p>
-            <p>Customer Assistance</p>
+            <p className='pb-2 md:pb-4 hover:text-tertiary-dark cursor-pointer transition-all'>Our Story</p>
+            <Link href='/contact' className='pb-2 md:pb-4 block hover:text-tertiary-dark transition-all'>Get in Touch</Link>
+            <p className='pb-2 md:pb-4 hover:text-tertiary-dark cursor-pointer transition-all'>Our Privacy Commitment</p>
+            <p className='pb-2 md:pb-4 hover:text-tertiary-dark cursor-pointer transition-all'>Terms of service</p>
+            <p className='hover:text-tertiary-dark cursor-pointer transition-all'>Customer Assistance</p>
           </div>
 
           <div className='w-1/2 md:flex-1 md:text-right text-sm md:text-base'>
