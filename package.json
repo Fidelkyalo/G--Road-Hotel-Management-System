@@ -40,5 +40,10 @@
   },
   "devDependencies": {
     "@types/react-datepicker": "^4.15.2"
+  },
+  "overrides": {
+    "next-auth-sanity": {
+      "@sanity/client": "$@sanity/client"
+    }
   }
 }
