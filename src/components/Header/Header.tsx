@@ -82,8 +82,8 @@ const Header = () => {
         <li className='hover:-translate-y-1 duration-500 transition-all'>
           <Link href='/rooms'>Rooms</Link>
         </li>
-        <li className='hover:-translate-y-2 duration-500 transition-all'>
-          <Link href='#contact'>Contact</Link>
+        <li className='hover:-translate-y-1 duration-500 transition-all'>
+          <Link href='/contact'>Contact</Link>
         </li>
       </ul>
     </header>
