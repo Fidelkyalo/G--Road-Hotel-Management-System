@@ -121,4 +121,5 @@ export const getRoomReviewsQuery = groq`*[_type == "review" && hotelRoom._ref ==
  */
 export const getBookingByCheckoutRequestId = groq`*[_type == "booking" && checkoutRequestId == $checkoutRequestId][0] {
     _id,
+    "hotelRoom": hotelRoom._ref
 }`;

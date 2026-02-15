@@ -32,18 +32,10 @@ export async function POST(req: Request) {
         if (ResultCode === 0) {
             // Success
             await updateBooking(booking._id, 'paid');
-            // Assuming booking object has hotelRoom reference, strictly we should fetch it or update it via ID
-            // But updateHotelRoom takes hotelRoomId. 
-            // We need to fetch hotelRoom ID from the booking.
-            // My getBookingByCheckoutRequestIdQuery only fetches _id. I should update it to fetch hotelRoom._ref
-            // Or just fetch it now.
-            // Let's rely on the query update I will do next or just update the query here.
 
-            // For now, let's mark booking as paid. 
-            // To update the room to booked, we need the room ID. 
-            // Let's assume we can fetch it or we updated the query.
-            // Actually I'll verify the query update in previous steps. 
-            // I updated getBookingByCheckoutRequestId to only return _id. I should have added hotelRoom.
+            if (booking.hotelRoom) {
+                await updateHotelRoom(booking.hotelRoom);
+            }
         } else {
             // Failed
             await updateBooking(booking._id, 'failed');
