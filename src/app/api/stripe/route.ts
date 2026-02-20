@@ -5,9 +5,7 @@ import { getServerSession } from 'next-auth';
 import { NextResponse } from 'next/server';
 import { getRoom } from '@/libs/apis';
 
-const stripe = new Stripe(process.env.STRIPE_SECRET_KEY as string, {
-  apiVersion: '2023-08-16',
-}) as any;
+const stripe = new Stripe(process.env.STRIPE_SECRET_KEY as string);
 
 type RequestData = {
   checkinDate: string;
@@ -87,9 +85,7 @@ export async function POST(req: Request, res: Response) {
           },
         },
       ],
-      automatic_payment_methods: {
-        enabled: true,
-      },
+      payment_method_types: ['card'],
       success_url: `${origin}/users/${userId}`,
       cancel_url: `${origin}/rooms/${hotelRoomSlug}`,
       metadata: {
