@@ -4,7 +4,6 @@ import { FC, useState } from 'react';
 import { BsFillSendFill, BsTelephoneOutbound } from 'react-icons/bs';
 import { HiOutlineMail, HiOutlineLocationMarker } from 'react-icons/hi';
 import toast from 'react-hot-toast';
-
 import axios from 'axios';
 
 const Contact: FC = () => {
