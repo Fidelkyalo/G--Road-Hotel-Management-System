@@ -1,7 +1,7 @@
 'use client';
 
 import { FC, useState } from 'react';
-import { BsFillSendFill, BsTelephoneOutbound } from 'react-icons/bs';
+import { BsFillSendFill, BsTelephoneOutbound, BsWhatsapp } from 'react-icons/bs';
 import { HiOutlineMail, HiOutlineLocationMarker } from 'react-icons/hi';
 import toast from 'react-hot-toast';
 import axios from 'axios';
@@ -109,7 +109,7 @@ const Contact: FC = () => {
                                 </div>
                                 <div>
                                     <h3 className='font-bold'>Our Location</h3>
-                                    <p className='text-gray-500'>Along G-Road, Nairobi, Kenya</p>
+                                    <p className='text-gray-500'>Along Garissa Road, Nairobi, Kenya</p>
                                 </div>
                             </div>
 
@@ -117,20 +117,35 @@ const Contact: FC = () => {
                                 <div className='bg-primary text-white p-3 rounded-xl'>
                                     <BsTelephoneOutbound className='text-xl' />
                                 </div>
-                                <div>
+                                <a href='tel:+254102039121' className='hover:underline'>
                                     <h3 className='font-bold'>Phone Number</h3>
-                                    <p className='text-gray-500'>+254 112 063383</p>
-                                </div>
+                                    <p className='text-gray-500'>+254 102 039121</p>
+                                </a>
                             </div>
 
                             <div className='flex items-start gap-4'>
                                 <div className='bg-tertiary-dark text-white p-3 rounded-xl'>
                                     <HiOutlineMail className='text-xl' />
                                 </div>
-                                <div>
+                                <a href='mailto:info@g-roadhotel.com' className='hover:underline'>
                                     <h3 className='font-bold'>Email Us</h3>
                                     <p className='text-gray-500'>info@g-roadhotel.com</p>
+                                </a>
+                            </div>
+
+                            <div className='flex items-start gap-4'>
+                                <div className='bg-[#25D366] text-white p-3 rounded-xl shadow-lg hover:scale-110 transition-transform'>
+                                    <BsWhatsapp className='text-xl' />
                                 </div>
+                                <a
+                                    href='https://wa.me/254102039121'
+                                    target='_blank'
+                                    rel='noopener noreferrer'
+                                    className='hover:underline text-green-600 font-bold'
+                                >
+                                    <h3 className='font-bold'>WhatsApp</h3>
+                                    <p className='text-gray-500'>Chat with us now</p>
+                                </a>
                             </div>
                         </div>
                     </div>

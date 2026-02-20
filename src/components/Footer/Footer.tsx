@@ -1,5 +1,5 @@
 import Link from 'next/link';
-import { BsFillSendFill, BsTelephoneOutbound } from 'react-icons/bs';
+import { BsFillSendFill, BsTelephoneOutbound, BsWhatsapp } from 'react-icons/bs';
 import { BiMessageDetail } from 'react-icons/bi';
 
 /**
@@ -30,7 +30,13 @@ const Footer = () => {
             </div>
             <div className='flex items-center'>
               <BsTelephoneOutbound />
-              <p className='ml-2 text-sm md:text-base'>+254112063383</p>
+              <p className='ml-2 text-sm md:text-base'>+254102039121</p>
+            </div>
+            <div className='flex items-center py-2 md:py-4'>
+              <BsWhatsapp className='text-green-500' />
+              <a href='https://wa.me/254102039121' target='_blank' rel='noopener noreferrer' className='ml-2 text-sm md:text-base hover:text-green-500 font-bold transition-all'>
+                WhatsApp Status
+              </a>
             </div>
           </div>
 
