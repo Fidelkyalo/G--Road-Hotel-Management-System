@@ -67,6 +67,9 @@ const RoomDetails = (props: { params: { slug: string } }) => {
     if (checkinDate > checkoutDate)
       return toast.error('Please choose a valid checkin period');
 
+    if (!phoneNumber || phoneNumber.length < 10)
+      return toast.error('Please provide a valid phone number for M-Pesa');
+
     setIsBookingLoading(true);
 
     const numberOfDays = calcNumDays() || 0;
@@ -77,25 +80,27 @@ const RoomDetails = (props: { params: { slug: string } }) => {
     const totalPrice = discountPrice * numberOfDays;
 
     try {
-      const { data: stripeSession } = await axios.post('/api/stripe', {
-        checkinDate: checkinDate.toISOString(),
-        checkoutDate: checkoutDate.toISOString(),
-        adults,
-        children: noOfChildren,
-        numberOfDays,
-        hotelRoomSlug,
+      const { data } = await axios.post('/api/mpesa/stkpush', {
+        phoneNumber,
+        amount: totalPrice,
+        accountReference: `Room-${hotelRoomSlug}`,
+        bookingDetails: {
+          checkinDate: checkinDate.toISOString(),
+          checkoutDate: checkoutDate.toISOString(),
+          adults,
+          children: noOfChildren,
+          numberOfDays,
+          hotelRoom: room._id,
+          discount: room.discount,
+          totalPrice,
+        },
       });
 
-      const stripe = await getStripe();
-      if (stripe) {
-        const { error } = await stripe.redirectToCheckout({
-          sessionId: stripeSession.id,
-        });
-
-        if (error) {
-          toast.error('Stripe redirect failed');
-          console.error('Stripe redirect error:', error);
-        }
+      if (data.ResponseCode === '0') {
+        toast.success('M-Pesa STK Push initiated. Please check your phone.');
+        router.push(`/users/${session?.user.id}`);
+      } else {
+        toast.error(data.ResponseDescription || 'M-Pesa payment failed');
       }
     } catch (error: any) {
       console.log('Error: ', error);
