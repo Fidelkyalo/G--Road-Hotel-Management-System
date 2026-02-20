@@ -192,3 +192,43 @@
   "time": "2026-02-20T17:40:03.574Z"
 }
 ---
+{
+  "message": "The Checkout Session's total amount must convert to at least 50 cents. KSh50.00 converts to approximately $0.39.",
+  "type": "StripeInvalidRequestError",
+  "raw": {
+    "code": "amount_too_small",
+    "doc_url": "https://stripe.com/docs/error-codes/amount-too-small",
+    "message": "The Checkout Session's total amount must convert to at least 50 cents. KSh50.00 converts to approximately $0.39.",
+    "request_log_url": "https://dashboard.stripe.com/acct_1SmH799GD0BcVWmK/test/workbench/logs?object=req_SuHDSi5Jjh3mzA",
+    "type": "invalid_request_error",
+    "headers": {
+      "server": "nginx",
+      "date": "Fri, 20 Feb 2026 17:40:08 GMT",
+      "content-type": "application/json",
+      "content-length": "414",
+      "connection": "keep-alive",
+      "access-control-allow-credentials": "true",
+      "access-control-allow-methods": "GET, HEAD, PUT, PATCH, POST, DELETE",
+      "access-control-allow-origin": "*",
+      "access-control-expose-headers": "Request-Id, Stripe-Manage-Version, Stripe-Should-Retry, X-Stripe-External-Auth-Required, X-Stripe-Privileged-Session-Required",
+      "access-control-max-age": "300",
+      "cache-control": "no-cache, no-store",
+      "content-security-policy": "base-uri 'none'; default-src 'none'; form-action 'none'; frame-ancestors 'none'; img-src 'self'; script-src 'self' 'report-sample'; style-src 'self'; worker-src 'none'; upgrade-insecure-requests; report-uri https://q.stripe.com/csp-violation?q=kE0RACKE8xUnP5htqb5U39raLD25UBAzTs1tgr19EmYLCCcQ2OqL6swJG6VNFy7SmK3PCw906JnkLrXG",
+      "idempotency-key": "stripe-node-retry-29766ab3-17ae-41e0-9e87-5140c18549b5",
+      "original-request": "req_SuHDSi5Jjh3mzA",
+      "request-id": "req_SuHDSi5Jjh3mzA",
+      "stripe-should-retry": "false",
+      "stripe-version": "2023-08-16",
+      "vary": "Origin",
+      "x-stripe-priority-routing-enabled": "true",
+      "x-stripe-routing-context-priority-tier": "api-testmode",
+      "x-wc": "ABGHIJ",
+      "strict-transport-security": "max-age=63072000; includeSubDomains; preload"
+    },
+    "statusCode": 400,
+    "requestId": "req_SuHDSi5Jjh3mzA"
+  },
+  "stack": "Error: The Checkout Session's total amount must convert to at least 50 cents. KSh50.00 converts to approximately $0.39.\n    at StripeError.generate (webpack-internal:///(rsc)/./node_modules/stripe/esm/Error.js:22:20)\n    at res.toJSON.then._Error_js__WEBPACK_IMPORTED_MODULE_0__.StripeAPIError.message (webpack-internal:///(rsc)/./node_modules/stripe/esm/RequestSender.js:102:82)\n    at process.processTicksAndRejections (node:internal/process/task_queues:105:5)",
+  "time": "2026-02-20T17:40:09.335Z"
+}
+---
