@@ -24,6 +24,9 @@ type RequestData = {
  * @param {Response} res - The response object.
  * @returns {Promise<NextResponse>} JSON response with the Stripe session.
  */
+import fs from 'fs';
+import path from 'path';
+
 export async function POST(req: Request, res: Response) {
   const {
     checkinDate,
@@ -46,7 +49,7 @@ export async function POST(req: Request, res: Response) {
     return new NextResponse('Please all fields are required', { status: 400 });
   }
 
-  const origin = req.headers.get('origin');
+  const origin = req.headers.get('origin') || process.env.NEXTAUTH_URL || 'http://localhost:3000';
 
   const session = await getServerSession(authOptions);
 
@@ -62,6 +65,10 @@ export async function POST(req: Request, res: Response) {
     const room = await getRoom(hotelRoomSlug);
     const discountPrice = room.price - (room.price / 100) * room.discount;
     const totalPrice = discountPrice * numberOfDays;
+
+    if (totalPrice < 50) {
+      return new NextResponse('Total price must be at least 50 KES for Stripe payments', { status: 400 });
+    }
 
     const stripeSessionPayload = {
       mode: 'payment',
@@ -82,6 +89,7 @@ export async function POST(req: Request, res: Response) {
       ],
       payment_method_types: ['card', 'mpesa'],
       success_url: `${origin}/users/${userId}`,
+      cancel_url: `${origin}/rooms/${hotelRoomSlug}`,
       metadata: {
         adults: adults.toString(),
         checkinDate: formattedCheckinDate,
@@ -95,9 +103,6 @@ export async function POST(req: Request, res: Response) {
       },
     };
 
-    console.log('Stripe Session Payload:', JSON.stringify(stripeSessionPayload, null, 2));
-    console.log('Origin:', origin);
-
     const stripeSession = await stripe.checkout.sessions.create(stripeSessionPayload);
 
     return NextResponse.json(stripeSession, {
@@ -105,12 +110,17 @@ export async function POST(req: Request, res: Response) {
       statusText: 'Payment session created',
     });
   } catch (error: any) {
-    console.error('Payment failed details:', {
+    const errorLog = JSON.stringify({
       message: error.message,
       type: error.type,
       raw: error.raw,
       stack: error.stack,
-    });
+      time: new Date().toISOString()
+    }, null, 2);
+
+    fs.appendFileSync(path.join(process.cwd(), 'stripe-error.log'), errorLog + '\n---\n');
+
+    console.error('Payment failed details:', error.message);
     return new NextResponse(error.message || 'Payment initiation failed', { status: 500 });
   }
 }
