@@ -154,12 +154,12 @@ const BookRoomCta: FC<Props> = props => {
         </div>
       </div>
 
-      {/* <div className='my-4'>
+      <div className='my-4'>
         <label
           htmlFor='phone'
           className='block text-sm font-medium text-gray-900 dark:text-gray-400'
         >
-          Phone Number (optional for M-Pesa)
+          Phone Number
         </label>
         <input
           type='text'
@@ -169,7 +169,7 @@ const BookRoomCta: FC<Props> = props => {
           placeholder='254712345678'
           className='w-full border border-gray-300 rounded-lg p-2.5 mt-1'
         />
-      </div> */}
+      </div>
 
       {calcNoOfDays() > 0 ? (
         <p className='mt-3'>Total Price: Ksh {(calcNoOfDays() * discountPrice).toLocaleString()}</p>
