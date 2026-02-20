@@ -43,7 +43,7 @@ const RoomDetails = (props: { params: { slug: string } }) => {
 
   const fetchRoom = async () => getRoom(slug);
 
-  const { data: room, error, isLoading } = useSWR('/api/room', fetchRoom);
+  const { data: room, error, isLoading, mutate } = useSWR(['/api/room', slug], fetchRoom);
 
   if (error) throw error;
   if (typeof room === 'undefined' && !isLoading)
@@ -72,14 +72,23 @@ const RoomDetails = (props: { params: { slug: string } }) => {
 
     setIsBookingLoading(true);
 
-    const numberOfDays = calcNumDays() || 0;
-    const hotelRoomSlug = room.slug.current;
-
-    // Calculate total price for STK Push
-    const discountPrice = room.price - (room.price / 100) * room.discount;
-    const totalPrice = discountPrice * numberOfDays;
-
     try {
+      // Pre-booking check: Refetch room data to ensure it's not booked
+      const currentRoomData = await fetchRoom();
+      if (currentRoomData.isBooked) {
+        toast.error('This room has just been booked. Please choose another.');
+        mutate(); // Update UI
+        setIsBookingLoading(false);
+        return;
+      }
+
+      const numberOfDays = calcNumDays() || 0;
+      const hotelRoomSlug = room.slug.current;
+
+      // Calculate total price for STK Push
+      const discountPrice = room.price - (room.price / 100) * room.discount;
+      const totalPrice = discountPrice * numberOfDays;
+
       const { data } = await axios.post('/api/mpesa/stkpush', {
         phoneNumber,
         amount: totalPrice,
