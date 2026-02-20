@@ -87,7 +87,9 @@ export async function POST(req: Request, res: Response) {
           },
         },
       ],
-      payment_method_types: ['card', 'mpesa'],
+      automatic_payment_methods: {
+        enabled: true,
+      },
       success_url: `${origin}/users/${userId}`,
       cancel_url: `${origin}/rooms/${hotelRoomSlug}`,
       metadata: {
