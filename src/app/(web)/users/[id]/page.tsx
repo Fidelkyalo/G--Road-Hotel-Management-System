@@ -153,6 +153,29 @@ const UserDetails = (props: { params: { id: string } }) => {
             />
           </div>
 
+          <div className='grid grid-cols-1 sm:grid-cols-2 gap-4 mt-8'>
+            <div className='bg-[#eff0f2] p-6 rounded-xl shadow-inner flex items-center'>
+              <div className='p-3 bg-blue-100 rounded-full mr-4'>
+                <BsJournalBookmarkFill className='text-blue-600 text-2xl' />
+              </div>
+              <div>
+                <p className='text-sm text-gray-500'>Total Bookings</p>
+                <p className='text-2xl font-bold'>{userBookings?.length ?? 0}</p>
+              </div>
+            </div>
+            <div className='bg-[#eff0f2] p-6 rounded-xl shadow-inner flex items-center'>
+              <div className='p-3 bg-green-100 rounded-full mr-4'>
+                <GiMoneyStack className='text-green-600 text-2xl' />
+              </div>
+              <div>
+                <p className='text-sm text-gray-500'>Amount Spent</p>
+                <p className='text-2xl font-bold'>
+                  Ksh {userBookings ? userBookings.reduce((acc, booking) => acc + booking.totalPrice, 0).toLocaleString() : 0}
+                </p>
+              </div>
+            </div>
+          </div>
+
           <nav className='sticky top-0 px-2 w-fit mx-auto md:w-full md:px-5 py-3 mb-8 text-gray-700 border border-gray-200 rounded-lg bg-gray-50 mt-7'>
             <ol
               className={`${currentNav === 'bookings' ? 'text-blue-600' : 'text-gray-700'
@@ -164,7 +187,7 @@ const UserDetails = (props: { params: { id: string } }) => {
               >
                 <BsJournalBookmarkFill />
                 <a className='inline-flex items-center mx-1 md:mx-3 text-xs md:text-sm font-medium'>
-                  Current Bookings
+                  Current Bookings ({userBookings?.length ?? 0})
                 </a>
               </li>
             </ol>
@@ -178,7 +201,7 @@ const UserDetails = (props: { params: { id: string } }) => {
               >
                 <GiMoneyStack />
                 <a className='inline-flex items-center mx-1 md:mx-3 text-xs md:text-sm font-medium'>
-                  Amount Spent
+                  Amount Spent (Ksh {userBookings ? userBookings.reduce((acc, booking) => acc + booking.totalPrice, 0).toLocaleString() : 0})
                 </a>
               </li>
             </ol>

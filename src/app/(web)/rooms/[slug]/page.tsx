@@ -67,9 +67,6 @@ const RoomDetails = (props: { params: { slug: string } }) => {
     if (checkinDate > checkoutDate)
       return toast.error('Please choose a valid checkin period');
 
-    if (!phoneNumber)
-      return toast.error('Please provide a phone number for M-Pesa payment');
-
     setIsBookingLoading(true);
 
     const numberOfDays = calcNumDays() || 0;
@@ -80,33 +77,29 @@ const RoomDetails = (props: { params: { slug: string } }) => {
     const totalPrice = discountPrice * numberOfDays;
 
     try {
-      const { data } = await axios.post('/api/mpesa/stkpush', {
-        phoneNumber: phoneNumber.startsWith('0') ? '254' + phoneNumber.slice(1) : phoneNumber,
-        amount: Math.ceil(totalPrice),
-        accountReference: room.name,
-        bookingDetails: {
-          hotelRoom: room._id,
-          checkinDate: checkinDate.toISOString().split('T')[0],
-          checkoutDate: checkoutDate.toISOString().split('T')[0],
-          numberOfDays,
-          adults,
-          children: noOfChildren,
-          discount: room.discount,
-        },
+      const { data: stripeSession } = await axios.post('/api/stripe', {
+        checkinDate: checkinDate.toISOString(),
+        checkoutDate: checkoutDate.toISOString(),
+        adults,
+        children: noOfChildren,
+        numberOfDays,
+        hotelRoomSlug,
       });
 
-      console.log('M-Pesa Response:', data);
+      const stripe = await getStripe();
+      if (stripe) {
+        const { error } = await stripe.redirectToCheckout({
+          sessionId: stripeSession.id,
+        });
 
-      if (data.ResponseCode === '0') {
-        toast.success('Payment Initiated! Check your phone.');
-        router.push(`/users/${session?.user?.id}`);
-      } else {
-        toast.error('Failed to initiate payment. Please try again.');
+        if (error) {
+          toast.error('Stripe redirect failed');
+          console.error('Stripe redirect error:', error);
+        }
       }
-
     } catch (error: any) {
       console.log('Error: ', error);
-      toast.error('Payment Failed');
+      toast.error('Payment Initiation Failed');
     } finally {
       setIsBookingLoading(false);
     }
