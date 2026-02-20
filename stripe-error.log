@@ -112,3 +112,43 @@
   "time": "2026-02-20T17:30:30.989Z"
 }
 ---
+{
+  "message": "Received unknown parameter: automatic_payment_methods",
+  "type": "StripeInvalidRequestError",
+  "raw": {
+    "code": "parameter_unknown",
+    "doc_url": "https://stripe.com/docs/error-codes/parameter-unknown",
+    "message": "Received unknown parameter: automatic_payment_methods",
+    "param": "automatic_payment_methods",
+    "request_log_url": "https://dashboard.stripe.com/acct_1SmH799GD0BcVWmK/test/workbench/logs?object=req_QpxjXIORRNFnxB",
+    "type": "invalid_request_error",
+    "headers": {
+      "server": "nginx",
+      "date": "Fri, 20 Feb 2026 17:36:10 GMT",
+      "content-type": "application/json",
+      "content-length": "399",
+      "connection": "keep-alive",
+      "access-control-allow-credentials": "true",
+      "access-control-allow-methods": "GET, HEAD, PUT, PATCH, POST, DELETE",
+      "access-control-allow-origin": "*",
+      "access-control-expose-headers": "Request-Id, Stripe-Manage-Version, Stripe-Should-Retry, X-Stripe-External-Auth-Required, X-Stripe-Privileged-Session-Required",
+      "access-control-max-age": "300",
+      "cache-control": "no-cache, no-store",
+      "content-security-policy": "base-uri 'none'; default-src 'none'; form-action 'none'; frame-ancestors 'none'; img-src 'self'; script-src 'self' 'report-sample'; style-src 'self'; worker-src 'none'; upgrade-insecure-requests; report-uri https://q.stripe.com/csp-violation?q=oXfI9R3P0BZKuO-Yn4ACy7V9cbopYC_bxsdPF1jtGXO_omKmEyO96boRL3vXmT6mQJTbx6aNwSn8d6qu",
+      "idempotency-key": "stripe-node-retry-26937887-be53-440d-a087-09232adad98f",
+      "original-request": "req_QpxjXIORRNFnxB",
+      "request-id": "req_QpxjXIORRNFnxB",
+      "stripe-version": "2023-08-16",
+      "vary": "Origin",
+      "x-stripe-priority-routing-enabled": "true",
+      "x-stripe-routing-context-priority-tier": "api-testmode",
+      "x-wc": "ABGHIJ",
+      "strict-transport-security": "max-age=63072000; includeSubDomains; preload"
+    },
+    "statusCode": 400,
+    "requestId": "req_QpxjXIORRNFnxB"
+  },
+  "stack": "Error: Received unknown parameter: automatic_payment_methods\n    at StripeError.generate (webpack-internal:///(rsc)/./node_modules/stripe/esm/Error.js:22:20)\n    at res.toJSON.then._Error_js__WEBPACK_IMPORTED_MODULE_0__.StripeAPIError.message (webpack-internal:///(rsc)/./node_modules/stripe/esm/RequestSender.js:102:82)\n    at process.processTicksAndRejections (node:internal/process/task_queues:105:5)",
+  "time": "2026-02-20T17:36:10.966Z"
+}
+---
