@@ -100,7 +100,12 @@ export async function POST(req: Request, res: Response) {
       statusText: 'Payment session created',
     });
   } catch (error: any) {
-    console.log('Payment falied', error);
-    return new NextResponse(error, { status: 500 });
+    console.error('Payment failed details:', {
+      message: error.message,
+      type: error.type,
+      raw: error.raw,
+      stack: error.stack,
+    });
+    return new NextResponse(error.message || 'Payment initiation failed', { status: 500 });
   }
 }
