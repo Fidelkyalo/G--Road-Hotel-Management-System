@@ -5,7 +5,9 @@ import { getServerSession } from 'next-auth';
 import { NextResponse } from 'next/server';
 import { getRoom } from '@/libs/apis';
 
-const stripe = new Stripe(process.env.STRIPE_SECRET_KEY as string);
+const stripe = new Stripe(process.env.STRIPE_SECRET_KEY as string, {
+  apiVersion: '2023-08-16',
+}) as any;
 
 type RequestData = {
   checkinDate: string;
