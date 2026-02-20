@@ -63,9 +63,7 @@ export async function POST(req: Request, res: Response) {
     const discountPrice = room.price - (room.price / 100) * room.discount;
     const totalPrice = discountPrice * numberOfDays;
 
-    // Create a stripe payment
-    console.log('Creating Stripe Session...');
-    const stripeSession = await stripe.checkout.sessions.create({
+    const stripeSessionPayload = {
       mode: 'payment',
       line_items: [
         {
@@ -95,7 +93,12 @@ export async function POST(req: Request, res: Response) {
         discount: room.discount.toString(),
         totalPrice: totalPrice.toString(),
       },
-    });
+    };
+
+    console.log('Stripe Session Payload:', JSON.stringify(stripeSessionPayload, null, 2));
+    console.log('Origin:', origin);
+
+    const stripeSession = await stripe.checkout.sessions.create(stripeSessionPayload);
 
     return NextResponse.json(stripeSession, {
       status: 200,
