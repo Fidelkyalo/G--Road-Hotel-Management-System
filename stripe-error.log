@@ -1,0 +1,76 @@
+{
+  "message": "Invalid payment_method_types[1]: must be one of card, acss_debit, affirm, afterpay_clearpay, alipay, au_becs_debit, bacs_debit, bancontact, blik, boleto, cashapp, crypto, customer_balance, eps, fpx, giropay, grabpay, ideal, klarna, konbini, link, mb_way, multibanco, oxxo, p24, pay_by_bank, paynow, paypal, payto, pix, promptpay, sepa_debit, sofort, swish, us_bank_account, wechat_pay, revolut_pay, mobilepay, zip, amazon_pay, alma, twint, kr_card, naver_pay, kakao_pay, payco, nz_bank_account, samsung_pay, billie, paypay, or satispay",
+  "type": "StripeInvalidRequestError",
+  "raw": {
+    "message": "Invalid payment_method_types[1]: must be one of card, acss_debit, affirm, afterpay_clearpay, alipay, au_becs_debit, bacs_debit, bancontact, blik, boleto, cashapp, crypto, customer_balance, eps, fpx, giropay, grabpay, ideal, klarna, konbini, link, mb_way, multibanco, oxxo, p24, pay_by_bank, paynow, paypal, payto, pix, promptpay, sepa_debit, sofort, swish, us_bank_account, wechat_pay, revolut_pay, mobilepay, zip, amazon_pay, alma, twint, kr_card, naver_pay, kakao_pay, payco, nz_bank_account, samsung_pay, billie, paypay, or satispay",
+    "param": "payment_method_types[1]",
+    "request_log_url": "https://dashboard.stripe.com/acct_1SmH799GD0BcVWmK/test/workbench/logs?object=req_TCoL5FFY4F69ig",
+    "type": "invalid_request_error",
+    "headers": {
+      "server": "nginx",
+      "date": "Fri, 20 Feb 2026 17:30:03 GMT",
+      "content-type": "application/json",
+      "content-length": "774",
+      "connection": "keep-alive",
+      "access-control-allow-credentials": "true",
+      "access-control-allow-methods": "GET, HEAD, PUT, PATCH, POST, DELETE",
+      "access-control-allow-origin": "*",
+      "access-control-expose-headers": "Request-Id, Stripe-Manage-Version, Stripe-Should-Retry, X-Stripe-External-Auth-Required, X-Stripe-Privileged-Session-Required",
+      "access-control-max-age": "300",
+      "cache-control": "no-cache, no-store",
+      "content-security-policy": "base-uri 'none'; default-src 'none'; form-action 'none'; frame-ancestors 'none'; img-src 'self'; script-src 'self' 'report-sample'; style-src 'self'; worker-src 'none'; upgrade-insecure-requests; report-uri https://q.stripe.com/csp-violation?q=1Tl295--Wj5HoMV2cb6LfIiyMMOpL-YW_RCbBUphidEOMoVRQzsYeNnMsfjgk7wwEHcURREyi1u1d0sK",
+      "idempotency-key": "stripe-node-retry-25f0d0f3-3642-4bd6-9aef-551e01834340",
+      "original-request": "req_TCoL5FFY4F69ig",
+      "request-id": "req_TCoL5FFY4F69ig",
+      "stripe-version": "2023-08-16",
+      "vary": "Origin",
+      "x-stripe-priority-routing-enabled": "true",
+      "x-stripe-routing-context-priority-tier": "api-testmode",
+      "x-wc": "ABGHIJ",
+      "strict-transport-security": "max-age=63072000; includeSubDomains; preload"
+    },
+    "statusCode": 400,
+    "requestId": "req_TCoL5FFY4F69ig"
+  },
+  "stack": "Error: Invalid payment_method_types[1]: must be one of card, acss_debit, affirm, afterpay_clearpay, alipay, au_becs_debit, bacs_debit, bancontact, blik, boleto, cashapp, crypto, customer_balance, eps, fpx, giropay, grabpay, ideal, klarna, konbini, link, mb_way, multibanco, oxxo, p24, pay_by_bank, paynow, paypal, payto, pix, promptpay, sepa_debit, sofort, swish, us_bank_account, wechat_pay, revolut_pay, mobilepay, zip, amazon_pay, alma, twint, kr_card, naver_pay, kakao_pay, payco, nz_bank_account, samsung_pay, billie, paypay, or satispay\n    at StripeError.generate (webpack-internal:///(rsc)/./node_modules/stripe/esm/Error.js:22:20)\n    at res.toJSON.then._Error_js__WEBPACK_IMPORTED_MODULE_0__.StripeAPIError.message (webpack-internal:///(rsc)/./node_modules/stripe/esm/RequestSender.js:102:82)\n    at process.processTicksAndRejections (node:internal/process/task_queues:105:5)",
+  "time": "2026-02-20T17:30:04.170Z"
+}
+---
+{
+  "message": "Invalid payment_method_types[1]: must be one of card, acss_debit, affirm, afterpay_clearpay, alipay, au_becs_debit, bacs_debit, bancontact, blik, boleto, cashapp, crypto, customer_balance, eps, fpx, giropay, grabpay, ideal, klarna, konbini, link, mb_way, multibanco, oxxo, p24, pay_by_bank, paynow, paypal, payto, pix, promptpay, sepa_debit, sofort, swish, us_bank_account, wechat_pay, revolut_pay, mobilepay, zip, amazon_pay, alma, twint, kr_card, naver_pay, kakao_pay, payco, nz_bank_account, samsung_pay, billie, paypay, or satispay",
+  "type": "StripeInvalidRequestError",
+  "raw": {
+    "message": "Invalid payment_method_types[1]: must be one of card, acss_debit, affirm, afterpay_clearpay, alipay, au_becs_debit, bacs_debit, bancontact, blik, boleto, cashapp, crypto, customer_balance, eps, fpx, giropay, grabpay, ideal, klarna, konbini, link, mb_way, multibanco, oxxo, p24, pay_by_bank, paynow, paypal, payto, pix, promptpay, sepa_debit, sofort, swish, us_bank_account, wechat_pay, revolut_pay, mobilepay, zip, amazon_pay, alma, twint, kr_card, naver_pay, kakao_pay, payco, nz_bank_account, samsung_pay, billie, paypay, or satispay",
+    "param": "payment_method_types[1]",
+    "request_log_url": "https://dashboard.stripe.com/acct_1SmH799GD0BcVWmK/test/workbench/logs?object=req_82L1GYrvQ5rVgF",
+    "type": "invalid_request_error",
+    "headers": {
+      "server": "nginx",
+      "date": "Fri, 20 Feb 2026 17:30:15 GMT",
+      "content-type": "application/json",
+      "content-length": "774",
+      "connection": "keep-alive",
+      "access-control-allow-credentials": "true",
+      "access-control-allow-methods": "GET, HEAD, PUT, PATCH, POST, DELETE",
+      "access-control-allow-origin": "*",
+      "access-control-expose-headers": "Request-Id, Stripe-Manage-Version, Stripe-Should-Retry, X-Stripe-External-Auth-Required, X-Stripe-Privileged-Session-Required",
+      "access-control-max-age": "300",
+      "cache-control": "no-cache, no-store",
+      "content-security-policy": "base-uri 'none'; default-src 'none'; form-action 'none'; frame-ancestors 'none'; img-src 'self'; script-src 'self' 'report-sample'; style-src 'self'; worker-src 'none'; upgrade-insecure-requests; report-uri https://q.stripe.com/csp-violation?q=1Tl295--Wj5HoMV2cb6LfIiyMMOpL-YW_RCbBUphidEOMoVRQzsYeNnMsfjgk7wwEHcURREyi1u1d0sK",
+      "idempotency-key": "stripe-node-retry-9fcae465-2a40-488e-a0a5-13da380db104",
+      "original-request": "req_82L1GYrvQ5rVgF",
+      "request-id": "req_82L1GYrvQ5rVgF",
+      "stripe-version": "2023-08-16",
+      "vary": "Origin",
+      "x-stripe-priority-routing-enabled": "true",
+      "x-stripe-routing-context-priority-tier": "api-testmode",
+      "x-wc": "ABGHIJ",
+      "strict-transport-security": "max-age=63072000; includeSubDomains; preload"
+    },
+    "statusCode": 400,
+    "requestId": "req_82L1GYrvQ5rVgF"
+  },
+  "stack": "Error: Invalid payment_method_types[1]: must be one of card, acss_debit, affirm, afterpay_clearpay, alipay, au_becs_debit, bacs_debit, bancontact, blik, boleto, cashapp, crypto, customer_balance, eps, fpx, giropay, grabpay, ideal, klarna, konbini, link, mb_way, multibanco, oxxo, p24, pay_by_bank, paynow, paypal, payto, pix, promptpay, sepa_debit, sofort, swish, us_bank_account, wechat_pay, revolut_pay, mobilepay, zip, amazon_pay, alma, twint, kr_card, naver_pay, kakao_pay, payco, nz_bank_account, samsung_pay, billie, paypay, or satispay\n    at StripeError.generate (webpack-internal:///(rsc)/./node_modules/stripe/esm/Error.js:22:20)\n    at res.toJSON.then._Error_js__WEBPACK_IMPORTED_MODULE_0__.StripeAPIError.message (webpack-internal:///(rsc)/./node_modules/stripe/esm/RequestSender.js:102:82)\n    at process.processTicksAndRejections (node:internal/process/task_queues:105:5)",
+  "time": "2026-02-20T17:30:16.746Z"
+}
+---
