@@ -74,7 +74,9 @@ export async function POST(req: Request, res: Response) {
             currency: 'kes',
             product_data: {
               name: room.name,
-              images: room.images.map(image => image.url),
+              images: room.images
+                .map(image => image.url)
+                .filter(url => url && url.startsWith('http')),
             },
             unit_amount: Math.round(totalPrice * 100),
           },
