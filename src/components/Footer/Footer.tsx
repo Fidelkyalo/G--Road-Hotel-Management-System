@@ -1,6 +1,7 @@
 import Link from 'next/link';
 import { BsFillSendFill, BsTelephoneOutbound, BsWhatsapp } from 'react-icons/bs';
 import { BiMessageDetail } from 'react-icons/bi';
+import { HiOutlineLocationMarker } from 'react-icons/hi';
 
 /**
  * Footer component displaying contact information and links.
@@ -31,6 +32,10 @@ const Footer = () => {
             <div className='flex items-center'>
               <BsTelephoneOutbound />
               <p className='ml-2 text-sm md:text-base'>+254102039121</p>
+            </div>
+            <div className='flex items-center py-2 md:py-4'>
+              <HiOutlineLocationMarker className='text-lg' />
+              <p className='ml-2 text-sm md:text-base'>Along Garissa Road, Nairobi, Kenya</p>
             </div>
             <div className='flex items-center py-2 md:py-4'>
               <BsWhatsapp className='text-green-500' />
