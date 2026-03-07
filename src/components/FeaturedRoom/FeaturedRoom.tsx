@@ -20,7 +20,9 @@ const FeaturedRoom: FC<Props> = props => {
 
   const coverImageUrl = featuredRoom.coverImageSanity
     ? urlFor(featuredRoom.coverImageSanity).width(500).height(500).url()
-    : featuredRoom.coverImage.url;
+    : featuredRoom.coverImage?.url || '/images/hero-1.jpeg';
+
+  const roomImages = featuredRoom.images ? [...featuredRoom.images].splice(1, 2) : [];
 
   return (
     <section className='flex md:flex-row flex-col px-4 py-10 items-center gap-12 container mx-auto'>
@@ -35,7 +37,7 @@ const FeaturedRoom: FC<Props> = props => {
           />
         </div>
         <div className='grid grid-cols-2 gap-4 md:gap-8 h-32 md:h-48'>
-          {[...featuredRoom.images].splice(1, 2).map(image => (
+          {roomImages.map(image => (
             <div key={image._key} className='rounded-2xl overflow-hidden'>
               <Image
                 src={image.url}

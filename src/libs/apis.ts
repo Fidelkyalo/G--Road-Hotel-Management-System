@@ -12,12 +12,18 @@ import { UpdateReviewDto } from '@/models/review';
  * @returns {Promise<Room>} A promise that resolves to the featured Room object.
  */
 export async function getFeaturedRoom() {
-  const result = await sanityClient.fetch<Room>(
-    queries.getFeaturedRoomQuery,
-    {},
-  );
-
-  return result;
+  console.log('Fetching featured room...');
+  try {
+    const result = await sanityClient.fetch<Room>(
+      queries.getFeaturedRoomQuery,
+      {},
+    );
+    console.log('Featured room data:', JSON.stringify(result, null, 2));
+    return result;
+  } catch (error) {
+    console.error('Error fetching featured room:', error);
+    throw error;
+  }
 }
 
 /**

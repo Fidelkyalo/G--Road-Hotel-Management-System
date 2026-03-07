@@ -22,6 +22,8 @@ const RoomCard: FC<Props> = props => {
     room: { coverImage, name, price, type, description, slug, isBooked, coverImageSanity },
   } = props;
 
+  if (!name || !price || !description || !slug) return null;
+
   const imageUrl = coverImageSanity
     ? urlFor(coverImageSanity).width(500).height(500).url()
     : coverImage?.url || '/images/placeholder.jpg';
