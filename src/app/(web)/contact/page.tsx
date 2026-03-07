@@ -103,6 +103,15 @@ const Contact: FC = () => {
                     <div className='bg-tertiary-light/10 p-8 rounded-3xl border border-tertiary-light/20'>
                         <h2 className='text-2xl font-bold mb-8 text-tertiary-dark'>Contact Information</h2>
                         <div className='space-y-6'>
+                            <div className='flex items-start gap-4'>
+                                <div className='bg-tertiary-dark text-white p-3 rounded-xl'>
+                                    <HiOutlineLocationMarker className='text-xl' />
+                                </div>
+                                <div>
+                                    <h3 className='font-bold'>Our Location</h3>
+                                    <p className='text-gray-500'>Along Garissa Road, Nairobi, Kenya</p>
+                                </div>
+                            </div>
 
                             <div className='flex items-start gap-4'>
                                 <div className='bg-primary text-white p-3 rounded-xl'>
@@ -149,6 +158,20 @@ const Contact: FC = () => {
                         <div className='absolute top-0 right-0 w-32 h-32 bg-primary/20 rounded-full -mr-16 -mt-16 blur-3xl'></div>
                     </div>
                 </div>
+            </div>
+
+            {/* Google Map Section */}
+            <div className='mt-16 rounded-3xl overflow-hidden shadow-2xl border-4 border-white dark:border-gray-800'>
+                <iframe
+                    src="https://www.google.com/maps/embed?pb=!1m17!1m12!1m3!1d3989.1!2d37.9075!3d-1.0125!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m2!1m1!2zMcKwMDAnNDUuMCJTIDM3wrA1NCc0Ny4wIkU!5e0!3m2!1sen!2ske!4v1700000000000!5m2!1sen!2ske"
+                    width="100%"
+                    height="450"
+                    style={{ border: 0 }}
+                    allowFullScreen
+                    loading="lazy"
+                    referrerPolicy="no-referrer-when-downgrade"
+                    title="G-Road Hotel Location"
+                ></iframe>
             </div>
 
         </div>

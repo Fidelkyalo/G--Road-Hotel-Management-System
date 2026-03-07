@@ -34,6 +34,10 @@ const Footer = () => {
               <p className='ml-2 text-sm md:text-base'>+1 (302) 898-6006</p>
             </div>
             <div className='flex items-center py-2 md:py-4'>
+              <HiOutlineLocationMarker className='text-lg' />
+              <p className='ml-2 text-sm md:text-base'>Along Garissa Road, Nairobi, Kenya</p>
+            </div>
+            <div className='flex items-center py-2 md:py-4'>
               <BsWhatsapp className='text-green-500' />
               <a href='https://wa.me/254112063383' target='_blank' rel='noopener noreferrer' className='ml-2 text-sm md:text-base hover:text-green-500 font-bold transition-all'>
                 WhatsApp Status
