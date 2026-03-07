@@ -40,7 +40,25 @@ const HotelPhotoGallery: FC<{ photos: ImageType[] }> = ({ photos }) => {
   const displayPhotos = photos.slice(1, maximumVisiblePhotos - 1);
   const remainingPhotosCount = totalPhotos - maximumVisiblePhotos;
 
-  const getImgSource = (photo: ImageType) => photo.uImage ? urlFor(photo.uImage).url() : photo.url;
+  const getImgSource = (photo: ImageType) => {
+    const placeholder = 'https://images.unsplash.com/photo-1544124499-58912cbddaad?ixlib=rb-4.0.3&auto=format&fit=crop&w=800&q=80';
+    if (!photo) return placeholder;
+    if (photo.uImage) return urlFor(photo.uImage).url();
+    if (photo.url) return photo.url;
+    // Handle Sanity file asset structure if present
+    if ((photo as any).file?.asset?._ref) {
+      const ref = (photo as any).file.asset._ref;
+      // Sanity file assets usually look like file-5758...-jpeg
+      // We can try to construct a URL or use a placeholder if it's not a standard image asset
+      // For now, let's log it and return a placeholder if we can't easily resolve it
+      console.log('Detected file asset ref:', ref);
+      // If it's a file asset and not an image asset, urlFor might not work directly
+      // but if the user uploaded an image as a 'file' type in Sanity, we need to handle it.
+      // Many projects use 'image' type which gives 'image-...' refs.
+      return placeholder;
+    }
+    return placeholder;
+  };
 
   return (
     <div className='container mx-auto'>

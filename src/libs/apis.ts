@@ -53,13 +53,15 @@ export async function getRooms() {
  */
 export async function getRoom(slug: string) {
   console.log('Fetching room initiated with slug:', slug);
+  const start = Date.now();
   try {
     const result = await sanityClient.fetch<Room>(
       queries.getRoom,
       { slug },
       { cache: 'no-cache' }
     );
-    console.log('Fetching room success:', result);
+    const end = Date.now();
+    console.log(`Fetching room success in ${end - start}ms`);
     return result;
   } catch (error) {
     console.error('Fetching room failed:', error);
