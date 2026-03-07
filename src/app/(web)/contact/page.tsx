@@ -117,9 +117,9 @@ const Contact: FC = () => {
                                 <div className='bg-primary text-white p-3 rounded-xl'>
                                     <BsTelephoneOutbound className='text-xl' />
                                 </div>
-                                <a href='tel:+13028986006' className='hover:underline'>
+                                <a href='tel:+254102039121' className='hover:underline'>
                                     <h3 className='font-bold'>Phone Number</h3>
-                                    <p className='text-gray-500'>+1 (302) 898-6006</p>
+                                    <p className='text-gray-500'>+254102039121</p>
                                 </a>
                             </div>
 
@@ -127,9 +127,9 @@ const Contact: FC = () => {
                                 <div className='bg-tertiary-dark text-white p-3 rounded-xl'>
                                     <HiOutlineMail className='text-xl' />
                                 </div>
-                                <a href='mailto:info@g-roadhotel.com' className='hover:underline'>
+                                <a href='mailto:fidelkm16@gmail.com' className='hover:underline'>
                                     <h3 className='font-bold'>Email Us</h3>
-                                    <p className='text-gray-500'>info@g-roadhotel.com</p>
+                                    <p className='text-gray-500'>fidelkm16@gmail.com</p>
                                 </a>
                             </div>
 
@@ -138,7 +138,7 @@ const Contact: FC = () => {
                                     <BsWhatsapp className='text-xl' />
                                 </div>
                                 <a
-                                    href='https://wa.me/254112063383'
+                                    href='https://wa.me/254102039121'
                                     target='_blank'
                                     rel='noopener noreferrer'
                                     className='hover:underline text-green-600 font-bold'

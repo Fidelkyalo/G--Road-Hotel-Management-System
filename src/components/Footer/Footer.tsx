@@ -27,11 +27,11 @@ const Footer = () => {
             <p className='font-bold text-lg'>G- Road Hotel</p>
             <div className='flex items-center py-2 md:py-4'>
               <BsFillSendFill />
-              <p className='ml-2 text-sm md:text-base'>info@g-roadhotel.com</p>
+              <p className='ml-2 text-sm md:text-base'>fidelkm16@gmail.com</p>
             </div>
             <div className='flex items-center'>
               <BsTelephoneOutbound />
-              <p className='ml-2 text-sm md:text-base'>+1 (302) 898-6006</p>
+              <p className='ml-2 text-sm md:text-base'>+254102039121</p>
             </div>
             <div className='flex items-center py-2 md:py-4'>
               <HiOutlineLocationMarker className='text-lg' />
@@ -39,7 +39,7 @@ const Footer = () => {
             </div>
             <div className='flex items-center py-2 md:py-4'>
               <BsWhatsapp className='text-green-500' />
-              <a href='https://wa.me/254112063383' target='_blank' rel='noopener noreferrer' className='ml-2 text-sm md:text-base hover:text-green-500 font-bold transition-all'>
+              <a href='https://wa.me/254102039121' target='_blank' rel='noopener noreferrer' className='ml-2 text-sm md:text-base hover:text-green-500 font-bold transition-all'>
                 WhatsApp Status
               </a>
             </div>
