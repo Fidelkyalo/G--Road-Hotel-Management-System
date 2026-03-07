@@ -27,7 +27,7 @@ const Footer = () => {
             <p className='font-bold text-lg'>G- Road Hotel</p>
             <div className='flex items-center py-2 md:py-4'>
               <BsFillSendFill />
-              <p className='ml-2 text-sm md:text-base'>fidelkm16@gmail.com</p>
+              <p className='ml-2 text-sm md:text-base'>info-groadhotel@gmail.com</p>
             </div>
             <div className='flex items-center'>
               <BsTelephoneOutbound />

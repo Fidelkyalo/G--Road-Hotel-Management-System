@@ -129,7 +129,7 @@ const Contact: FC = () => {
                                 </div>
                                 <a href='mailto:fidelkm16@gmail.com' className='hover:underline'>
                                     <h3 className='font-bold'>Email Us</h3>
-                                    <p className='text-gray-500'>fidelkm16@gmail.com</p>
+                                    <p className='text-gray-500'>info-groadhotel@gmail.com</p>
                                 </a>
                             </div>
 
