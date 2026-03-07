@@ -8,13 +8,11 @@ const client = createClient({
     apiVersion: '2021-10-21',
 });
 
-const slugs = ['1 Bedroom', 'Studio'];
-Promise.all(slugs.map(slug =>
-    client.fetch('*[_type == "hotelRoom" && slug.current == $slug][0]', { slug })
-)).then(rooms => {
-    rooms.forEach(r => {
-        if (!r) return console.log('Room not found');
-        console.log(`--- Room: ${r.name} (${r.slug.current}) ---`);
-        console.log('Images:', JSON.stringify(r.images, null, 2));
-    });
-}).catch(err => console.error(err));
+client.fetch('*[_type == "hotelRoom"]')
+    .then(rooms => {
+        console.log('All Hotel Rooms Slugs:');
+        rooms.forEach(r => {
+            console.log(`- Name: "${r.name}", Slug: [${r.slug?.current}]`);
+        });
+    })
+    .catch(err => console.error(err));

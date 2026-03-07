@@ -32,13 +32,15 @@ export async function getFeaturedRoom() {
  */
 export async function getRooms() {
   console.log('Fetching rooms initiated...');
+  const start = Date.now();
   try {
     const result = await sanityClient.fetch<Room[]>(
       queries.getRoomsQuery,
       {},
       { cache: 'no-cache' }
     );
-    console.log('Fetching rooms success:', result);
+    const end = Date.now();
+    console.log(`Fetching rooms success in ${end - start}ms`);
     return result;
   } catch (error) {
     console.error('Fetching rooms failed:', error);
