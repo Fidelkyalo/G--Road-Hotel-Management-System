@@ -103,23 +103,14 @@ const Contact: FC = () => {
                     <div className='bg-tertiary-light/10 p-8 rounded-3xl border border-tertiary-light/20'>
                         <h2 className='text-2xl font-bold mb-8 text-tertiary-dark'>Contact Information</h2>
                         <div className='space-y-6'>
-                            <div className='flex items-start gap-4'>
-                                <div className='bg-tertiary-dark text-white p-3 rounded-xl'>
-                                    <HiOutlineLocationMarker className='text-xl' />
-                                </div>
-                                <div>
-                                    <h3 className='font-bold'>Our Location</h3>
-                                    <p className='text-gray-500'>Along Garissa Road, Nairobi, Kenya</p>
-                                </div>
-                            </div>
 
                             <div className='flex items-start gap-4'>
                                 <div className='bg-primary text-white p-3 rounded-xl'>
                                     <BsTelephoneOutbound className='text-xl' />
                                 </div>
-                                <a href='tel:+254102039121' className='hover:underline'>
+                                <a href='tel:+13028986006' className='hover:underline'>
                                     <h3 className='font-bold'>Phone Number</h3>
-                                    <p className='text-gray-500'>+254 102 039121</p>
+                                    <p className='text-gray-500'>+1 (302) 898-6006</p>
                                 </a>
                             </div>
 
@@ -138,7 +129,7 @@ const Contact: FC = () => {
                                     <BsWhatsapp className='text-xl' />
                                 </div>
                                 <a
-                                    href='https://wa.me/254102039121'
+                                    href='https://wa.me/254112063383'
                                     target='_blank'
                                     rel='noopener noreferrer'
                                     className='hover:underline text-green-600 font-bold'
@@ -160,19 +151,6 @@ const Contact: FC = () => {
                 </div>
             </div>
 
-            {/* Google Map Section */}
-            <div className='mt-16 rounded-3xl overflow-hidden shadow-2xl border-4 border-white dark:border-gray-800'>
-                <iframe
-                    src="https://www.google.com/maps/embed?pb=!1m17!1m12!1m3!1d3989.1!2d37.9075!3d-1.0125!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m2!1m1!2zMcKwMDAnNDUuMCJTIDM3wrA1NCc0Ny4wIkU!5e0!3m2!1sen!2ske!4v1700000000000!5m2!1sen!2ske"
-                    width="100%"
-                    height="450"
-                    style={{ border: 0 }}
-                    allowFullScreen
-                    loading="lazy"
-                    referrerPolicy="no-referrer-when-downgrade"
-                    title="G-Road Hotel Location"
-                ></iframe>
-            </div>
         </div>
     );
 };
