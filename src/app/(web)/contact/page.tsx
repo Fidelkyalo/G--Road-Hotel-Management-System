@@ -40,7 +40,7 @@ const Contact: FC = () => {
             <div className='text-center mb-16'>
                 <h1 className='font-heading mb-4 text-white bg-tertiary-dark inline-block px-8 py-2 rounded-xl'>Get in Touch</h1>
                 <p className='font-normal text-gray-500 max-w-2xl mx-auto'>
-                    Have questions about our rooms or services? We're here to help you experience the best of G- Road Hotel.
+                    Have questions about our rooms or services? We&apos;re here to help you experience the best of G- Road Hotel.
                 </p>
             </div>
 
