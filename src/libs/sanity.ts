@@ -5,8 +5,8 @@ import { createClient } from 'next-sanity';
  * Uses environment variables for project configuration.
  */
 const sanityClient = createClient({
-  projectId: process.env.NEXT_PUBLIC_SANITY_PROJECT_ID,
-  dataset: process.env.NEXT_PUBLIC_SANITY_DATASET,
+  projectId: process.env.NEXT_PUBLIC_SANITY_PROJECT_ID || '8wg7d4jw',
+  dataset: process.env.NEXT_PUBLIC_SANITY_DATASET || 'production',
   useCdn: process.env.NODE_ENV === 'production',
   token: process.env.SANITY_STUDIO_TOKEN,
   apiVersion: '2021-10-21',
