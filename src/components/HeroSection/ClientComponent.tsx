@@ -19,7 +19,7 @@ const ClientComponent: FC<Props> = props => {
   return (
     <section
       className='flex px-4 items-center gap-12 container mx-auto h-screen bg-fixed bg-center bg-cover'
-      style={{ backgroundImage: `url('/images/hero-1.jpeg')` }}
+      style={{ backgroundImage: `url('https://dynamic-media-cdn.tripadvisor.com/media/photo-o/0d/21/8e/f4/work-in-progress.jpg?w=900&h=500&s=1')` }}
     >
       <div className='absolute inset-0 bg-black/30 z-0' />
       <div className='h-full flex flex-col justify-center items-center z-10 w-full text-center'>

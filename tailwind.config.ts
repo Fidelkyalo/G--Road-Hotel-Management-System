@@ -10,11 +10,11 @@ const config: Config = {
     theme: {
         extend: {
             colors: {
-                primary: '#038C7F', // Teal
-                secondary: '#F2C641', // Gold
+                primary: '#4338ca', // Indigo
+                secondary: '#f59e0b', // Amber
                 tertiary: {
-                    light: '#F2C641',
-                    dark: '#000000',
+                    light: '#fbbf24',
+                    dark: '#0f172a',
                 },
             },
             fontFamily: {
