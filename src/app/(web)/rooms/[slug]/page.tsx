@@ -8,7 +8,7 @@ import { GiSmokeBomb } from 'react-icons/gi';
 import { useState } from 'react';
 import axios from 'axios';
 import { useRouter } from 'next/navigation';
-import { useSession } from 'next-auth/react';
+import { useSession, signIn } from 'next-auth/react';
 
 import { getRoom } from '@/libs/apis';
 import LoadingSpinner from '../../loading';
@@ -64,6 +64,11 @@ const RoomDetails = (props: { params: { slug: string } }) => {
   };
 
   const handleBookNowClick = async () => {
+    if (!session) {
+      toast.error('You must be logged in to book a room');
+      return signIn();
+    }
+
     if (!checkinDate || !checkoutDate)
       return toast.error('Please provide checkin / checkout date');
 
@@ -110,7 +115,11 @@ const RoomDetails = (props: { params: { slug: string } }) => {
 
       if (data.ResponseCode === '0') {
         toast.success('M-Pesa STK Push initiated. Please check your phone.');
-        router.push(`/users/${session?.user.id}`);
+        if (session?.user?.id) {
+          router.push(`/users/${session.user.id}`);
+        } else {
+          router.push('/');
+        }
       } else {
         toast.error(data.ResponseDescription || 'M-Pesa payment failed');
       }
