@@ -10,11 +10,11 @@ const config: Config = {
     theme: {
         extend: {
             colors: {
-                primary: '#4338ca', // Indigo
-                secondary: '#f59e0b', // Amber
+                primary: '#065f46', // Emerald 800
+                secondary: '#10b981', // Emerald 500
                 tertiary: {
-                    light: '#fbbf24',
-                    dark: '#0f172a',
+                    light: '#34d399', // Emerald 400
+                    dark: '#0f172a', // Slate 900
                 },
             },
             fontFamily: {
