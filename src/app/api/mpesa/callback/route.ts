@@ -3,6 +3,7 @@ import { NextResponse } from 'next/server';
 import { updateHotelRoom, updateBooking } from '@/libs/apis';
 import sanityClient from '@/libs/sanity';
 import { getBookingByCheckoutRequestId } from '@/libs/sanityQueries';
+import { sendBookingConfirmation } from '@/libs/sendEmail';
 
 export async function POST(req: Request) {
     const data = await req.json();
@@ -36,6 +37,20 @@ export async function POST(req: Request) {
             if (booking.hotelRoom) {
                 await updateHotelRoom(booking.hotelRoom);
             }
+
+            // Send Email Confirmation
+            await sendBookingConfirmation({
+                userId: booking.user,
+                roomId: booking.hotelRoom,
+                bookingId: booking._id,
+                checkinDate: booking.checkinDate,
+                checkoutDate: booking.checkoutDate,
+                numberOfDays: booking.numberOfDays,
+                adults: booking.adults,
+                children: booking.children,
+                totalPrice: booking.totalPrice,
+                discount: booking.discount || 0,
+            });
         } else {
             // Failed
             await updateBooking(booking._id, 'failed');

@@ -18,6 +18,9 @@ const poppins = Poppins({
 export const metadata: Metadata = {
   title: 'G- Road Hotel',
   description: 'Discover the best hotel rooms',
+  icons: {
+    icon: '/images/LOGO.png',
+  },
 };
 
 /**

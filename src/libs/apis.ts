@@ -17,6 +17,7 @@ export async function getFeaturedRoom() {
     const result = await sanityClient.fetch<Room>(
       queries.getFeaturedRoomQuery,
       {},
+      { cache: 'no-cache' }
     );
     console.log('Featured room data:', JSON.stringify(result, null, 2));
     return result;
@@ -72,6 +73,25 @@ export async function getRoom(slug: string) {
 }
 
 /**
+ * Fetches a specific room by its ID.
+ * @param {string} id - The default or draft ID of the room to fetch.
+ * @returns {Promise<Room>} A promise that resolves to the Room object.
+ */
+export async function getRoomById(id: string) {
+  try {
+    const result = await sanityClient.fetch<Room>(
+      queries.getRoomByIdQuery,
+      { id },
+      { cache: 'no-cache' }
+    );
+    return result;
+  } catch (error) {
+    console.error('Fetching room by ID failed:', error);
+    throw error;
+  }
+}
+
+/**
  * Creates a new booking in Sanity CMS.
  * @param {CreateBookingDto} bookingData - The data for the new booking.
  * @returns {Promise<any>} A promise that resolves to the result of the mutation.
@@ -105,6 +125,34 @@ export const createBooking = async ({
           discount,
           status,
           checkoutRequestId,
+        },
+      },
+    ],
+  };
+
+  const { data } = await axios.post(
+    `https://${process.env.NEXT_PUBLIC_SANITY_PROJECT_ID}.api.sanity.io/v2021-10-21/data/mutate/${process.env.NEXT_PUBLIC_SANITY_DATASET}`,
+    mutation,
+    { headers: { Authorization: `Bearer ${process.env.SANITY_STUDIO_TOKEN}` } }
+  );
+
+  return data;
+};
+
+/**
+ * Updates a booking's email sent status.
+ * @param {string} bookingId - The ID of the booking to update.
+ * @returns {Promise<any>} A promise that resolves to the result of the mutation.
+ */
+export const updateBookingEmailStatus = async (bookingId: string) => {
+  const mutation = {
+    mutations: [
+      {
+        patch: {
+          id: bookingId,
+          set: {
+            isEmailSent: true,
+          },
         },
       },
     ],

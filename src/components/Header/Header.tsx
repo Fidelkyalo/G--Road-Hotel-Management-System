@@ -26,7 +26,8 @@ const Header = () => {
   return (
     <header className='py-4 px-4 container mx-auto text-xl flex flex-wrap md:flex-nowrap items-center justify-between sticky top-0 z-50 bg-white/90 dark:bg-black/90 backdrop-blur-md shadow-sm transition-all'>
       <div className='flex items-center w-full md:w-2/3'>
-        <Link href='/' className='font-black text-tertiary-dark text-lg md:text-xl'>
+        <Link href='/' className='flex items-center gap-2 font-black text-tertiary-dark text-lg md:text-xl'>
+          <Image src='/images/LOGO.png' alt='G- Road Hotel Logo' width={40} height={40} className='w-8 h-8 md:w-10 md:h-10' />
           G- Road Hotel
         </Link>
         <ul className='flex items-center ml-5'>

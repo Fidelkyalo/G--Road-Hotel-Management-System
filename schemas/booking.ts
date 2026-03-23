@@ -90,6 +90,12 @@ const booking = {
       title: 'Checkout Request ID',
       type: 'string',
     }),
+    defineField({
+      name: 'isEmailSent',
+      title: 'Is Confirmation Email Sent',
+      type: 'boolean',
+      initialValue: false,
+    }),
   ],
 };
 

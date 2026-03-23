@@ -86,23 +86,26 @@ const UserDetails = (props: { params: { id: string } }) => {
     error: errorGettingUserData,
   } = useSWR('/api/users', fetchUserData);
 
-  if (error || errorGettingUserData) throw new Error('Cannot fetch data');
-  if (typeof userBookings === 'undefined' && !isLoading)
-    throw new Error('Cannot fetch data');
-  if (typeof userData === 'undefined' && !loadingUserData)
-    throw new Error('Cannot fetch data');
+  if (isLoading || loadingUserData) return <LoadingSpinner />;
 
-  if (loadingUserData) return <LoadingSpinner />;
-  if (!userData) throw new Error('Cannot fetch data');
-  if (!userData) throw new Error('Cannot fetch data');
+  if (error || errorGettingUserData || !userData) {
+    return (
+      <div className='flex flex-col items-center justify-center min-h-[60vh] gap-4'>
+        <p className='text-2xl font-bold text-red-500'>Could not load profile</p>
+        <p className='text-gray-500'>Please sign out and sign back in to try again.</p>
+      </div>
+    );
+  }
+
+  const userImage = userData.image || `https://ui-avatars.com/api/?name=${encodeURIComponent(userData.name)}&background=random&size=143`;
 
   return (
-    <div className='container mx-auto px-2 md:px-4 py10'>
+    <div className='container mx-auto px-4 py-10'>
       <div className='grid md:grid-cols-12 gap-10'>
         <div className='hidden md:block md:col-span-4 lg:col-span-3 shadow-lg h-fit sticky top-10 bg-[#eff0f2] text-black rounded-lg px-6 py-4'>
           <div className='md:w-[143px] w-28 h-28 md:h-[143px] mx-auto mb-5 rounded-full overflow-hidden'>
             <Image
-              src={userData.image}
+              src={userImage}
               alt={userData.name}
               width={143}
               height={143}
@@ -134,8 +137,8 @@ const UserDetails = (props: { params: { id: string } }) => {
               className='img scale-animation rounded-full'
               width={56}
               height={56}
-              src={userData.image}
-              alt='User  Name'
+              src={userImage}
+              alt={userData.name}
             />
           </div>
           <p className='block w-fit md:hidden text-sm py-2'>

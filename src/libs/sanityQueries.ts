@@ -60,6 +60,17 @@ export const getRoom = groq`*[_type == "hotelRoom" && slug.current == $slug][0] 
 }`;
 
 /**
+ * Query to fetch a single room with detailed info by id.
+ */
+export const getRoomByIdQuery = groq`*[_type == "hotelRoom" && _id == $id][0] {
+    _id,
+    name,
+    price,
+    slug,
+    description
+}`;
+
+/**
  * Query to fetch bookings for a specific user.
  * Filters by user reference ID.
  */
@@ -91,7 +102,7 @@ export const getUserBookingsQuery = groq`*[_type == 'booking' && user._ref == $u
  * Query to fetch user profile data.
  * Retrieves name, email, admin status, and image.
  */
-export const getUserDataQuery = groq`*[_type == 'user' && _id == $userId][0] {
+export const getUserDataQuery = groq`*[_type == 'user' && (_id == $userId || _id == ("drafts." + $userId))][0] {
     _id,
     name,
     email,
@@ -121,5 +132,13 @@ export const getRoomReviewsQuery = groq`*[_type == "review" && hotelRoom._ref ==
  */
 export const getBookingByCheckoutRequestId = groq`*[_type == "booking" && checkoutRequestId == $checkoutRequestId][0] {
     _id,
-    "hotelRoom": hotelRoom._ref
+    "hotelRoom": hotelRoom._ref,
+    "user": user._ref,
+    checkinDate,
+    checkoutDate,
+    numberOfDays,
+    adults,
+    children,
+    totalPrice,
+    discount
 }`;

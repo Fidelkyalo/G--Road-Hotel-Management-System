@@ -22,6 +22,20 @@ const FeaturedRoom: FC<Props> = props => {
     ? urlFor(featuredRoom.coverImageSanity).width(500).height(500).url()
     : featuredRoom.coverImage?.url || '/images/hero-1.jpeg';
 
+
+  const isImageUrl = (url: string) =>
+    /\.(jpg|jpeg|png|webp|avif|gif)$/i.test(url);
+
+  const localImages = [
+    '/images/bathroom.jpg',
+    '/images/sitting.jpg',
+    '/images/kitchen.jpg',
+    '/images/corridoor.jpg',
+  ];
+
+  const getSafeImageUrl = (url: string, fallbackIndex: number) =>
+    url && isImageUrl(url) ? url : localImages[fallbackIndex % localImages.length];
+
   const roomImages = featuredRoom.images ? [...featuredRoom.images].splice(1, 2) : [];
 
   return (
@@ -37,10 +51,10 @@ const FeaturedRoom: FC<Props> = props => {
           />
         </div>
         <div className='grid grid-cols-2 gap-4 md:gap-8 h-32 md:h-48'>
-          {roomImages.map(image => (
+          {roomImages.map((image, i) => (
             <div key={image._key} className='rounded-2xl overflow-hidden'>
               <Image
-                src={image.url}
+                src={getSafeImageUrl(image.url, i)}
                 alt={image._key}
                 width={300}
                 height={300}

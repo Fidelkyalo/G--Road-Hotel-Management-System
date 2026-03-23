@@ -37,7 +37,6 @@ export async function POST(req: Request) {
     try {
         if (!process.env.EMAIL_USER || !process.env.EMAIL_PASS) {
             console.warn('Email credentials not found. Check your .env file.');
-            // For development, we'll log the message and return success
             console.log('Faked Email Send (Preview):', mailOptions);
             return NextResponse.json({ message: 'Email credentials not set, but message received (preview in console).' }, { status: 200 });
         }

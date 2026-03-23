@@ -69,7 +69,7 @@ const Rooms = () => {
   const filteredRooms = filterRooms(data || []);
 
   return (
-    <div className='container mx-auto pt-10'>
+    <div className='container mx-auto pt-10 px-4'>
       <Search
         roomTypeFilter={roomTypeFilter}
         searchQuery={searchQuery}

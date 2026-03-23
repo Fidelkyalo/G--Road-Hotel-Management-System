@@ -24,9 +24,29 @@ const RoomCard: FC<Props> = props => {
 
   if (!name || !price || !description || !slug) return null;
 
+  const isImageUrl = (url: string) => {
+    return /\.(jpg|jpeg|png|webp|avif|gif)$/i.test(url);
+  };
+
+  const localImageMapping: { [key: string]: string } = {
+    '1-bedroom': '/images/bedroom 2.jpeg',
+    '3-bedroom-suite': '/images/sitting 2.jpeg',
+    '3- bedroom': '/images/sitting 2.jpeg',
+    'studio-room': '/images/bedroom.avif',
+    'studio-room-basic': '/images/sitting.jpg',
+  };
+
+  const localImage = slug?.current
+    ? localImageMapping[decodeURIComponent(slug.current)] ||
+      localImageMapping[slug.current]
+    : null;
+
   const imageUrl = coverImageSanity
     ? urlFor(coverImageSanity).width(500).height(500).url()
-    : coverImage?.url || '/images/placeholder.jpg';
+    : localImage ||
+      (coverImage?.url && isImageUrl(coverImage.url)
+        ? coverImage.url
+        : '/images/sitting.jpg');
 
   return (
     <div className='rounded-xl w-full max-w-[320px] mb-10 mx-auto md:mx-0 overflow-hidden text-black shadow-md hover:shadow-xl transition-all duration-300'>

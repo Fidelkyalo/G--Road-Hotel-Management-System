@@ -18,8 +18,12 @@ const ClientComponent: FC<Props> = props => {
 
   return (
     <section
-      className='flex px-4 items-center gap-12 container mx-auto h-screen bg-fixed bg-center bg-cover'
-      style={{ backgroundImage: `url('/images/hero-1.jpeg')` }}
+      className='flex px-4 items-center gap-12 container mx-auto h-screen bg-center bg-cover'
+      style={{
+        backgroundImage: `url('/images/landing.jpg')`,
+        backgroundAttachment: 'scroll',
+        imageRendering: 'high-quality' as any,
+      }}
     >
       <div className='absolute inset-0 bg-black/30 z-0' />
       <div className='h-full flex flex-col justify-center items-center z-10 w-full text-center'>

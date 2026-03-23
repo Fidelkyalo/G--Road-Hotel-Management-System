@@ -65,6 +65,30 @@ const booking = {
       type: 'number',
       validation: Rule => Rule.required().min(0),
     }),
+    defineField({
+      name: 'status',
+      title: 'Booking Status',
+      type: 'string',
+      options: {
+        list: [
+          { title: 'Pending', value: 'pending' },
+          { title: 'Paid', value: 'paid' },
+          { title: 'Failed', value: 'failed' },
+        ],
+      },
+      initialValue: 'pending',
+    }),
+    defineField({
+      name: 'checkoutRequestId',
+      title: 'Checkout Request ID',
+      type: 'string',
+    }),
+    defineField({
+      name: 'isEmailSent',
+      title: 'Is Confirmation Email Sent',
+      type: 'boolean',
+      initialValue: false,
+    }),
   ],
 };
 

@@ -36,11 +36,14 @@ export const authOptions: NextAuthOptions = {
         }`,
         { email: userEmail }
       );
+      // Strip "drafts." prefix if present (happens when Sanity dataset is in draft mode)
+      const rawId = userIdObj?._id ?? '';
+      const normalizedId = rawId.startsWith('drafts.') ? rawId.replace('drafts.', '') : rawId;
       return {
         ...session,
         user: {
           ...session.user,
-          id: userIdObj?._id,
+          id: normalizedId || rawId,
         },
       };
     },
