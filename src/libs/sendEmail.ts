@@ -4,6 +4,7 @@ import { getUserData, getRoomById, updateBookingEmailStatus } from './apis';
 export const sendBookingConfirmation = async ({
   userId,
   roomId,
+  bookingId,
   checkinDate,
   checkoutDate,
   numberOfDays,
