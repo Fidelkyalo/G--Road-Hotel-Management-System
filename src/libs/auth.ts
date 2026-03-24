@@ -29,25 +29,31 @@ export const authOptions: NextAuthOptions = {
   secret: process.env.NEXTAUTH_SECRET,
   callbacks: {
     session: async ({ session, token }) => {
-      const userEmail = token.email;
-      const userIdObj = await sanityClient.fetch<{ _id: string; isAdmin: boolean }>(
-        `*[_type == "user" && email == $email][0] {
-            _id,
-            isAdmin
-        }`,
-        { email: userEmail }
-      );
-      // Strip "drafts." prefix if present
-      const rawId = userIdObj?._id ?? '';
-      const normalizedId = rawId.startsWith('drafts.') ? rawId.replace('drafts.', '') : rawId;
       return {
         ...session,
         user: {
           ...session.user,
-          id: normalizedId || rawId,
-          isAdmin: userIdObj?.isAdmin ?? false,
+          id: token.id as string,
+          isAdmin: token.isAdmin as boolean,
         },
       };
+    },
+    jwt: async ({ token, user }) => {
+      if (user) {
+        // This only runs on sign in
+        const userEmail = user.email;
+        const userIdObj = await sanityClient.fetch<{ _id: string; isAdmin: boolean }>(
+          `*[_type == "user" && email == $email][0] {
+              _id,
+              isAdmin
+          }`,
+          { email: userEmail }
+        );
+        const rawId = userIdObj?._id ?? '';
+        token.id = rawId.startsWith('drafts.') ? rawId.replace('drafts.', '') : rawId;
+        token.isAdmin = userIdObj?.isAdmin ?? false;
+      }
+      return token;
     },
   },
 };
