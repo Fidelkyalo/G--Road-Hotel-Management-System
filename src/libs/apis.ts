@@ -168,18 +168,19 @@ export const updateBookingEmailStatus = async (bookingId: string) => {
 };
 
 /**
- * Updates a hotel room's status to booked.
+ * Updates a hotel room's booking status.
  * @param {string} hotelRoomId - The ID of the hotel room to update.
+ * @param {boolean} isBooked - The new booking status.
  * @returns {Promise<any>} A promise that resolves to the result of the mutation.
  */
-export const updateHotelRoom = async (hotelRoomId: string) => {
+export const updateHotelRoom = async (hotelRoomId: string, isBooked: boolean = true) => {
   const mutation = {
     mutations: [
       {
         patch: {
           id: hotelRoomId,
           set: {
-            isBooked: true,
+            isBooked,
           },
         },
       },

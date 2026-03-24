@@ -74,6 +74,7 @@ const booking = {
           { title: 'Pending', value: 'pending' },
           { title: 'Paid', value: 'paid' },
           { title: 'Failed', value: 'failed' },
+          { title: 'Checked Out', value: 'checked-out' },
         ],
       },
       initialValue: 'pending',

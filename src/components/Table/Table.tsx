@@ -75,7 +75,8 @@ const Table: FC<Props> = ({
               <td className='px-6 py-4'>
                 <span className={`px-2 py-1 rounded-full text-xs font-semibold ${booking.status === 'paid' ? 'bg-green-100 text-green-800' :
                   booking.status === 'failed' ? 'bg-red-100 text-red-800' :
-                    'bg-yellow-100 text-yellow-800'
+                    booking.status === 'checked-out' ? 'bg-gray-100 text-gray-800' :
+                      'bg-yellow-100 text-yellow-800'
                   }`}>
                   {booking.status ? booking.status.toUpperCase() : 'PENDING'}
                 </span>
@@ -105,6 +106,24 @@ const Table: FC<Props> = ({
                     className='ml-4 font-medium text-green-600 hover:underline'
                   >
                     Verify (Dev)
+                  </button>
+                )}
+                {booking.status === 'paid' && (
+                  <button
+                    onClick={async () => {
+                      try {
+                        await axios.post('/api/bookings/checkout', {
+                          bookingId: booking._id,
+                        });
+                        toast.success('Successfully checked out!');
+                        router.refresh();
+                      } catch (error) {
+                        toast.error('Failed to check out');
+                      }
+                    }}
+                    className='ml-4 font-medium text-red-600 hover:underline'
+                  >
+                    Check out
                   </button>
                 )}
               </td>
