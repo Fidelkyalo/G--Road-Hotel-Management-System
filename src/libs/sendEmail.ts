@@ -55,10 +55,10 @@ export const sendBookingConfirmation = async ({
     });
 
     const mailOptions = {
-        from: `G- Road Hotel <${process.env.EMAIL_USER}>`,
-        to: clientEmail,
-        subject: `Booking Confirmation: ${roomName} at G- Road Hotel`,
-        text: `
+      from: `G- Road Hotel <${process.env.EMAIL_USER}>`,
+      to: clientEmail,
+      subject: `Booking Confirmation: ${roomName} at G- Road Hotel`,
+      text: `
           Dear ${clientName},
           
           Thank you for choosing G- Road Hotel! Your booking is confirmed.
@@ -82,7 +82,7 @@ export const sendBookingConfirmation = async ({
           Warm regards,
           G- Road Hotel Management
         `,
-        html: `
+      html: `
           <div style="font-family: Arial, sans-serif; max-width: 600px; margin: 0 auto; color: #333;">
             <h2 style="color: #4a5568;">Booking Confirmation</h2>
             <p>Dear ${clientName},</p>
@@ -123,7 +123,7 @@ export const sendBookingConfirmation = async ({
 
     return true;
   } catch (error) {
-    console.error('Failed to send booking confirmation email:', error);
+    console.error(`Failed to send booking confirmation email for Booking ID ${bookingId}:`, error);
     return false;
   }
 };

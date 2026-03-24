@@ -125,6 +125,7 @@ export const createBooking = async ({
           discount,
           status,
           checkoutRequestId,
+          isEmailSent: false,
         },
       },
     ],

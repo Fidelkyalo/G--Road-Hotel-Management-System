@@ -7,7 +7,7 @@ export async function POST(req: Request) {
     const { _id, _type, status, isEmailSent, user, hotelRoom, checkinDate, checkoutDate, numberOfDays, adults, children, totalPrice, discount } = body;
 
     // Only process booking documents where status is 'paid' and email hasn't been sent yet
-    if (_type === 'booking' && status === 'paid' && isEmailSent === false) {
+    if (_type === 'booking' && status === 'paid' && !isEmailSent) {
       console.log(`Processing auto-email for Booking ID: ${_id}`);
 
       const success = await sendBookingConfirmation({
