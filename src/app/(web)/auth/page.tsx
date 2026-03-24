@@ -39,7 +39,6 @@ const Auth = () => {
   const loginHandler = async () => {
     try {
       await signIn();
-      router.push('/');
     } catch (error) {
       console.log(error);
       toast.error("Something wen't wrong");

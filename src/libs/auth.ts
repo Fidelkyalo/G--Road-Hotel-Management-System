@@ -30,13 +30,14 @@ export const authOptions: NextAuthOptions = {
   callbacks: {
     session: async ({ session, token }) => {
       const userEmail = token.email;
-      const userIdObj = await sanityClient.fetch<{ _id: string }>(
+      const userIdObj = await sanityClient.fetch<{ _id: string; isAdmin: boolean }>(
         `*[_type == "user" && email == $email][0] {
-            _id
+            _id,
+            isAdmin
         }`,
         { email: userEmail }
       );
-      // Strip "drafts." prefix if present (happens when Sanity dataset is in draft mode)
+      // Strip "drafts." prefix if present
       const rawId = userIdObj?._id ?? '';
       const normalizedId = rawId.startsWith('drafts.') ? rawId.replace('drafts.', '') : rawId;
       return {
@@ -44,6 +45,7 @@ export const authOptions: NextAuthOptions = {
         user: {
           ...session.user,
           id: normalizedId || rawId,
+          isAdmin: userIdObj?.isAdmin ?? false,
         },
       };
     },

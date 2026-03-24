@@ -83,6 +83,11 @@ const Header = () => {
         <li className='hover:-translate-y-1 duration-500 transition-all'>
           <Link href='/rooms'>Rooms</Link>
         </li>
+        {session?.user?.isAdmin && (
+          <li className='hover:-translate-y-1 duration-500 transition-all font-bold text-tertiary-dark'>
+            <Link href='/studio'>Control</Link>
+          </li>
+        )}
         <li className='hover:-translate-y-1 duration-500 transition-all'>
           <Link href='/contact'>Contact</Link>
         </li>
