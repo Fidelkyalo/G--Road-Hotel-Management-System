@@ -20,7 +20,7 @@ const FeaturedRoom: FC<Props> = props => {
 
   const coverImageUrl = featuredRoom.coverImageSanity
     ? urlFor(featuredRoom.coverImageSanity).width(500).height(500).url()
-    : featuredRoom.coverImage?.url || '/images/hero-1.jpeg';
+    : featuredRoom.coverImage?.url || '/images/bedroom.avif';
 
 
   const isImageUrl = (url: string) =>
