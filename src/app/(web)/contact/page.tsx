@@ -4,7 +4,7 @@ import { FC, useState } from 'react';
 import { BsFillSendFill, BsTelephoneOutbound, BsWhatsapp } from 'react-icons/bs';
 import { HiOutlineMail, HiOutlineLocationMarker } from 'react-icons/hi';
 import toast from 'react-hot-toast';
-import axios from 'axios';
+
 
 const Contact: FC = () => {
     const [formData, setFormData] = useState({
@@ -19,17 +19,19 @@ const Contact: FC = () => {
         setFormData(prev => ({ ...prev, [name]: value }));
     };
 
-    const handleSubmit = async (e: React.FormEvent) => {
+    const handleSubmit = (e: React.FormEvent) => {
         e.preventDefault();
         setIsLoading(true);
 
         try {
-            const { data } = await axios.post('/api/contact', formData);
-            toast.success(data.message || 'Message sent! We will get back to you soon.');
+            const subject = encodeURIComponent('Hotel Inquiry from ' + formData.name);
+            const body = encodeURIComponent(
+                `Name: ${formData.name}\nEmail: ${formData.email}\n\nMessage:\n${formData.message}`
+            );
+            window.location.href = `mailto:fidelkm16@gmail.com?subject=${subject}&body=${body}`;
+
+            toast.success('Opening your email client...', { duration: 4000 });
             setFormData({ name: '', email: '', message: '' });
-        } catch (error: any) {
-            console.error('Error sending message:', error);
-            toast.error(error.response?.data || 'Failed to send message. Please try again.');
         } finally {
             setIsLoading(false);
         }
