@@ -38,6 +38,8 @@ const RoomDetails = (props: { params: { slug: string } }) => {
   const [isBookingLoading, setIsBookingLoading] = useState(false);
   const [phoneNumber, setPhoneNumber] = useState('');
 
+  const [paymentMethod, setPaymentMethod] = useState<'mpesa' | 'stripe'>('mpesa');
+
   const router = useRouter();
   const { data: session } = useSession();
 
@@ -75,7 +77,7 @@ const RoomDetails = (props: { params: { slug: string } }) => {
     if (checkinDate > checkoutDate)
       return toast.error('Please choose a valid checkin period');
 
-    if (!phoneNumber || phoneNumber.length < 10)
+    if (paymentMethod === 'mpesa' && (!phoneNumber || phoneNumber.length < 10))
       return toast.error('Please provide a valid phone number for M-Pesa');
 
     setIsBookingLoading(true);
@@ -93,35 +95,54 @@ const RoomDetails = (props: { params: { slug: string } }) => {
       const numberOfDays = calcNumDays() || 0;
       const hotelRoomSlug = room.slug.current;
 
-      // Calculate total price for STK Push
+      // Calculate total price
       const discountPrice = room.price - (room.price / 100) * room.discount;
       const totalPrice = discountPrice * numberOfDays;
 
-      const { data } = await axios.post('/api/mpesa/stkpush', {
-        phoneNumber,
-        amount: totalPrice,
-        accountReference: `Room-${hotelRoomSlug}`,
-        bookingDetails: {
+      if (paymentMethod === 'mpesa') {
+        const { data } = await axios.post('/api/mpesa/stkpush', {
+          phoneNumber,
+          amount: totalPrice,
+          accountReference: `Room-${hotelRoomSlug}`,
+          bookingDetails: {
+            checkinDate: checkinDate.toISOString(),
+            checkoutDate: checkoutDate.toISOString(),
+            adults,
+            children: noOfChildren,
+            numberOfDays,
+            hotelRoom: room._id,
+            discount: room.discount,
+            totalPrice,
+          },
+        });
+
+        if (data.ResponseCode === '0') {
+          toast.success('M-Pesa STK Push initiated. Please check your phone.');
+          if (session?.user?.id) {
+            router.push(`/users/${session.user.id}`);
+          } else {
+            router.push('/');
+          }
+        } else {
+          toast.error(data.ResponseDescription || 'M-Pesa payment failed');
+        }
+      } else {
+        // Stripe Payment
+        const stripe = await getStripe();
+        const { data } = await axios.post('/api/stripe', {
           checkinDate: checkinDate.toISOString(),
           checkoutDate: checkoutDate.toISOString(),
           adults,
           children: noOfChildren,
           numberOfDays,
-          hotelRoom: room._id,
-          discount: room.discount,
-          totalPrice,
-        },
-      });
+          hotelRoomSlug,
+        });
 
-      if (data.ResponseCode === '0') {
-        toast.success('M-Pesa STK Push initiated. Please check your phone.');
-        if (session?.user?.id) {
-          router.push(`/users/${session.user.id}`);
-        } else {
-          router.push('/');
+        if (data.id) {
+          await stripe?.redirectToCheckout({
+            sessionId: data.id,
+          });
         }
-      } else {
-        toast.error(data.ResponseDescription || 'M-Pesa payment failed');
       }
     } catch (error: any) {
       console.log('Error: ', error);
@@ -238,6 +259,8 @@ const RoomDetails = (props: { params: { slug: string } }) => {
               isBookingLoading={isBookingLoading}
               phoneNumber={phoneNumber}
               setPhoneNumber={setPhoneNumber}
+              paymentMethod={paymentMethod}
+              setPaymentMethod={setPaymentMethod}
             />
           </div>
         </div>
