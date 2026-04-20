@@ -22,8 +22,6 @@ type Props = {
   isBookingLoading: boolean;
   phoneNumber: string;
   setPhoneNumber: Dispatch<SetStateAction<string>>;
-  paymentMethod: 'mpesa' | 'stripe';
-  setPaymentMethod: Dispatch<SetStateAction<'mpesa' | 'stripe'>>;
 };
 
 /**
@@ -49,8 +47,6 @@ const BookRoomCta: FC<Props> = props => {
     isBookingLoading,
     phoneNumber,
     setPhoneNumber,
-    paymentMethod,
-    setPaymentMethod,
   } = props;
 
   const discountPrice = price - (price / 100) * discount;
@@ -159,53 +155,21 @@ const BookRoomCta: FC<Props> = props => {
       </div>
 
       <div className='my-4'>
-        <label className='block text-sm font-medium text-gray-900 dark:text-gray-400'>
-          Payment Method
+        <label
+          htmlFor='phone'
+          className='block text-sm font-medium text-gray-900 dark:text-gray-400'
+        >
+          M-Pesa Phone Number
         </label>
-        <div className='flex items-center gap-4 mt-2'>
-          <label className='flex items-center'>
-            <input
-              type='radio'
-              name='paymentMethod'
-              value='mpesa'
-              checked={paymentMethod === 'mpesa'}
-              onChange={() => setPaymentMethod('mpesa')}
-              className='mr-2'
-            />
-            M-Pesa
-          </label>
-          <label className='flex items-center'>
-            <input
-              type='radio'
-              name='paymentMethod'
-              value='stripe'
-              checked={paymentMethod === 'stripe'}
-              onChange={() => setPaymentMethod('stripe')}
-              className='mr-2'
-            />
-            Stripe
-          </label>
-        </div>
+        <input
+          type='text'
+          id='phone'
+          value={phoneNumber}
+          onChange={e => setPhoneNumber(e.target.value)}
+          placeholder='254712345678'
+          className='w-full border border-gray-300 rounded-lg p-2.5 mt-1'
+        />
       </div>
-
-      {paymentMethod === 'mpesa' && (
-        <div className='my-4'>
-          <label
-            htmlFor='phone'
-            className='block text-sm font-medium text-gray-900 dark:text-gray-400'
-          >
-            M-Pesa Phone Number
-          </label>
-          <input
-            type='text'
-            id='phone'
-            value={phoneNumber}
-            onChange={e => setPhoneNumber(e.target.value)}
-            placeholder='254712345678'
-            className='w-full border border-gray-300 rounded-lg p-2.5 mt-1'
-          />
-        </div>
-      )}
 
       {calcNoOfDays() > 0 ? (
         <p className='mt-3'>Total Price: Ksh {(calcNoOfDays() * discountPrice).toLocaleString()}</p>
