@@ -6,40 +6,41 @@ import { getBookingByCheckoutRequestId } from '@/libs/sanityQueries';
 import { sendBookingConfirmation } from '@/libs/sendEmail';
 
 export async function POST(req: Request) {
-    const data = await req.json();
-
-    if (!data.Body.stkCallback.CallbackMetadata) {
-        console.log("M-Pesa Payment Failed or Cancelled");
-        // Update booking to failed if needed, but we need CheckoutRequestID
-        // data.Body.stkCallback.CheckoutRequestID is always present
-        return NextResponse.json("Ok");
-    }
-
-    const { CheckoutRequestID, ResultCode } = data.Body.stkCallback;
-    console.log("M-Pesa Callback Data:", JSON.stringify(data.Body.stkCallback));
-
+    console.log("M-Pesa Callback Received!");
     try {
-        // 1. Find the pending booking
+        const data = await req.json();
+        console.log("M-Pesa Full Payload:", JSON.stringify(data));
+
+        if (!data?.Body?.stkCallback?.CallbackMetadata) {
+            console.log("M-Pesa Payment Failed, Cancelled, or Invalid Metadata Received");
+            return NextResponse.json("Ok");
+        }
+
+        const { CheckoutRequestID, ResultCode } = data.Body.stkCallback;
+        console.log(`M-Pesa Trace: CheckoutID=${CheckoutRequestID}, Result=${ResultCode}`);
+
+        console.log("Querying Sanity for booking...");
         const booking = await sanityClient.fetch(getBookingByCheckoutRequestId, {
             checkoutRequestId: CheckoutRequestID,
         });
 
         if (!booking) {
-            console.error(`Booking with CheckoutRequestID ${CheckoutRequestID} not found.`);
+            console.error(`ERROR: Booking not found for CheckoutRequestID: ${CheckoutRequestID}`);
             return NextResponse.json("Booking not found", { status: 404 });
         }
 
-        // 2. Update status based on ResultCode
+        console.log(`Booking ID ${booking._id} found. Current status: ${booking.status}`);
+
         if (ResultCode === 0) {
-            // Success
+            console.log("Payment SUCCESS. Updating records...");
             await updateBooking(booking._id, 'paid');
 
             if (booking.hotelRoom) {
                 await updateHotelRoom(booking.hotelRoom);
             }
 
-            // Send Email Confirmation
-            await sendBookingConfirmation({
+            console.log("Attempting to send confirmation email...");
+            const emailSent = await sendBookingConfirmation({
                 userId: booking.user,
                 roomId: booking.hotelRoom,
                 bookingId: booking._id,
@@ -51,14 +52,15 @@ export async function POST(req: Request) {
                 totalPrice: booking.totalPrice,
                 discount: booking.discount || 0,
             });
+            console.log(`Email process finished. emailSent return value: ${emailSent}`);
         } else {
-            // Failed
+            console.log(`Payment FAILED (Code ${ResultCode}). Updating booking to 'failed'.`);
             await updateBooking(booking._id, 'failed');
         }
 
-    } catch (error) {
-        console.error("Error processing M-Pesa callback:", error);
-        return NextResponse.json("Error", { status: 500 });
+    } catch (error: any) {
+        console.error("CRITICAL ERROR in M-Pesa Callback Route:", error.message);
+        return NextResponse.json({ error: error.message }, { status: 500 });
     }
 
     return NextResponse.json("Ok");
