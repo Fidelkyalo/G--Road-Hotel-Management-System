@@ -70,4 +70,5 @@ export type CreateBookingDto = {
   discount: number;
   status?: string;
   checkoutRequestId?: string;
+  bookingStatusNumber?: string;
 };

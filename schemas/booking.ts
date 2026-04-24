@@ -96,6 +96,11 @@ const booking = {
       type: 'boolean',
       initialValue: false,
     }),
+    defineField({
+      name: 'bookingStatusNumber',
+      title: 'Booking Status Number',
+      type: 'string',
+    }),
   ],
 };
 

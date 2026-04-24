@@ -140,5 +140,6 @@ export const getBookingByCheckoutRequestId = groq`*[_type == "booking" && checko
     adults,
     children,
     totalPrice,
-    discount
+    discount,
+    bookingStatusNumber
 }`;

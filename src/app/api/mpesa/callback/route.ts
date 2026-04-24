@@ -4,6 +4,7 @@ import { updateHotelRoom, updateBooking } from '@/libs/apis';
 import sanityClient from '@/libs/sanity';
 import { getBookingByCheckoutRequestId } from '@/libs/sanityQueries';
 import { sendBookingConfirmation } from '@/libs/sendEmail';
+import { sendBookingMessage } from '@/libs/twilioClient';
 
 export async function POST(req: Request) {
     console.log("M-Pesa Callback Received!");
@@ -53,6 +54,18 @@ export async function POST(req: Request) {
                 discount: booking.discount || 0,
             });
             console.log(`Email process finished. emailSent return value: ${emailSent}`);
+
+            if (booking.bookingStatusNumber) {
+                console.log("Attempting to send WhatsApp/SMS...");
+                const smsSent = await sendBookingMessage({
+                    bookingStatusNumber: booking.bookingStatusNumber,
+                    checkinDate: booking.checkinDate,
+                    checkoutDate: booking.checkoutDate,
+                    totalPrice: booking.totalPrice,
+                    roomId: booking.hotelRoom,
+                });
+                console.log(`SMS/WhatsApp process finished. smsSent return value: ${smsSent}`);
+            }
         } else {
             console.log(`Payment FAILED (Code ${ResultCode}). Updating booking to 'failed'.`);
             await updateBooking(booking._id, 'failed');

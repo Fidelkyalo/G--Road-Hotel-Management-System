@@ -108,6 +108,7 @@ export const createBooking = async ({
   user,
   status = 'pending',
   checkoutRequestId,
+  bookingStatusNumber,
 }: CreateBookingDto) => {
   const mutation = {
     mutations: [
@@ -125,6 +126,7 @@ export const createBooking = async ({
           discount,
           status,
           checkoutRequestId,
+          bookingStatusNumber,
           isEmailSent: false,
         },
       },

@@ -22,6 +22,8 @@ type Props = {
   isBookingLoading: boolean;
   phoneNumber: string;
   setPhoneNumber: Dispatch<SetStateAction<string>>;
+  bookingStatusNumber: string;
+  setBookingStatusNumber: Dispatch<SetStateAction<string>>;
 };
 
 /**
@@ -47,6 +49,8 @@ const BookRoomCta: FC<Props> = props => {
     isBookingLoading,
     phoneNumber,
     setPhoneNumber,
+    bookingStatusNumber,
+    setBookingStatusNumber,
   } = props;
 
   const discountPrice = price - (price / 100) * discount;
@@ -166,6 +170,23 @@ const BookRoomCta: FC<Props> = props => {
           id='phone'
           value={phoneNumber}
           onChange={e => setPhoneNumber(e.target.value)}
+          placeholder='254712345678'
+          className='w-full border border-gray-300 rounded-lg p-2.5 mt-1'
+        />
+      </div>
+
+      <div className='my-4'>
+        <label
+          htmlFor='status-phone'
+          className='block text-sm font-medium text-gray-900 dark:text-gray-400'
+        >
+          Booking Status Number (WhatsApp/SMS)
+        </label>
+        <input
+          type='text'
+          id='status-phone'
+          value={bookingStatusNumber}
+          onChange={e => setBookingStatusNumber(e.target.value)}
           placeholder='254712345678'
           className='w-full border border-gray-300 rounded-lg p-2.5 mt-1'
         />
