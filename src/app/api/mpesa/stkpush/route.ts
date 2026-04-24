@@ -61,7 +61,8 @@ export async function POST(req: Request) {
     );
 
     const stkPushUrl = 'https://sandbox.safaricom.co.ke/mpesa/stkpush/v1/processrequest';
-    const callbackUrl = process.env.MPESA_CALLBACK_URL || 'https://mydomain.com/api/mpesa/callback';
+    const baseUrl = process.env.NEXTAUTH_URL?.replace(/\/$/, '') || 'https://g-road-hotel-management-system-wtgb.vercel.app';
+    const callbackUrl = `${baseUrl}/api/mpesa/callback`;
 
     const payload = {
         BusinessShortCode: shortcode,
