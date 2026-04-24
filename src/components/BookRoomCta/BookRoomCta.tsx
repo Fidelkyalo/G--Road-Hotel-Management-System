@@ -81,8 +81,8 @@ const BookRoomCta: FC<Props> = props => {
 
       <h4 className='my-8'>{specialNote}</h4>
 
-      <div className='flex'>
-        <div className='w-1/2 pr-2'>
+      <div className='flex flex-col sm:flex-row sm:space-x-4 space-y-4 sm:space-y-0 mt-4'>
+        <div className='w-full sm:w-1/2'>
           <label
             htmlFor='check-in-date'
             className='block text-sm font-medium text-gray-900 dark:text-gray-400'
@@ -98,7 +98,7 @@ const BookRoomCta: FC<Props> = props => {
             className='w-full border text-black border-gray-300 rounded-lg p-2.5 focus:ring-primary focus:border-primary'
           />
         </div>
-        <div className='w-1/2 pl-2'>
+        <div className='w-full sm:w-1/2'>
           <label
             htmlFor='check-out-date'
             className='block text-sm font-medium text-gray-900 dark:text-gray-400'
@@ -117,8 +117,8 @@ const BookRoomCta: FC<Props> = props => {
         </div>
       </div>
 
-      <div className='flex mt-4'>
-        <div className='w-1/2 pr-2'>
+      <div className='flex flex-col sm:flex-row sm:space-x-4 space-y-4 sm:space-y-0 mt-4'>
+        <div className='w-full sm:w-1/2'>
           <label
             htmlFor='adults'
             className='block text-sm font-medium text-gray-900 dark:text-gray-400'
@@ -135,7 +135,7 @@ const BookRoomCta: FC<Props> = props => {
             className='w-full border border-gray-300 rounded-lg p-2.5'
           />
         </div>
-        <div className='w-1/2 pl-2'>
+        <div className='w-full sm:w-1/2'>
           <label
             htmlFor='children'
             className='block text-sm font-medium text-gray-900 dark:text-gray-400'

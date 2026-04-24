@@ -76,7 +76,7 @@ const HotelPhotoGallery: FC<{ photos: ImageType[]; slug: string }> = ({
   return (
     <div className='container mx-auto'>
       <div className='grid md:grid-cols-2 relative gap-5 px-3'>
-        <div className='h-[540px] relative rounded-2xl overflow-hidden'>
+        <div className='h-[300px] md:h-[540px] relative rounded-2xl overflow-hidden'>
           <div className='hidden md:flex justify-center items-center w-full h-full'>
             <Image
               src={getImgSource(photos[0])}
@@ -143,8 +143,8 @@ const HotelPhotoGallery: FC<{ photos: ImageType[]; slug: string }> = ({
         </div>
 
         {showModal && (
-          <div className='fixed top-0 left-0 w-full h-full flex justify-center items-center bg-black bg-opacity-90 z-[55]'>
-            <div className='h-[75vh] w-[320px] md:w-[700px] relative'>
+          <div className='fixed top-0 left-0 w-full h-full flex justify-center items-center bg-black bg-opacity-90 z-[55] px-4'>
+            <div className='h-[60vh] md:h-[75vh] w-full max-w-[90vw] md:max-w-[700px] relative'>
               <Image
                 src={getImgSource(photos[currenPhotoIndex])}
                 alt={`Room Photo ${currenPhotoIndex + 1}`}
