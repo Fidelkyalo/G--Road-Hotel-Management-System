@@ -3,7 +3,6 @@ import { NextResponse } from 'next/server';
 import { updateHotelRoom, updateBooking } from '@/libs/apis';
 import sanityClient from '@/libs/sanity';
 import { getBookingByCheckoutRequestId } from '@/libs/sanityQueries';
-import { sendBookingConfirmation } from '@/libs/sendEmail';
 import { sendBookingMessage } from '@/libs/twilioClient';
 
 export async function POST(req: Request) {
@@ -40,20 +39,8 @@ export async function POST(req: Request) {
                 await updateHotelRoom(booking.hotelRoom);
             }
 
-            console.log("Attempting to send confirmation email...");
-            const emailSent = await sendBookingConfirmation({
-                userId: booking.user,
-                roomId: booking.hotelRoom,
-                bookingId: booking._id,
-                checkinDate: booking.checkinDate,
-                checkoutDate: booking.checkoutDate,
-                numberOfDays: booking.numberOfDays,
-                adults: booking.adults,
-                children: booking.children,
-                totalPrice: booking.totalPrice,
-                discount: booking.discount || 0,
-            });
-            console.log(`Email process finished. emailSent return value: ${emailSent}`);
+            // Email notifications have been explicitly disabled
+            // Only using Twilio for SMS/WhatsApp notifications.
 
             if (booking.bookingStatusNumber) {
                 console.log("Attempting to send WhatsApp/SMS...");
