@@ -66,9 +66,13 @@ export const sendBookingMessage = async (bookingDetails: {
 
         console.log(`Sending WhatsApp to ${formattedNumber}...`);
         await client.messages.create({
-            body: messageBody,
             from: twilioWhatsAppNumber,
             to: `whatsapp:${formattedNumber}`,
+            contentSid: 'HXb5b62575e6e4ff6129ad7cBefe1f983e',
+            contentVariables: JSON.stringify({
+                "1": checkinStr,
+                "2": "12:00 PM"
+            })
         });
 
         console.log('Successfully sent out Twilio SMS and WhatsApp notifications!');
