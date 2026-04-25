@@ -80,9 +80,6 @@ const RoomDetails = (props: { params: { slug: string } }) => {
     if (!phoneNumber || phoneNumber.length < 10)
       return toast.error('Please provide a valid phone number for M-Pesa');
 
-    if (!bookingStatusNumber || bookingStatusNumber.length < 10)
-      return toast.error('Please provide a valid Booking Status number for WhatsApp/SMS');
-
     setIsBookingLoading(true);
 
     try {
@@ -115,7 +112,7 @@ const RoomDetails = (props: { params: { slug: string } }) => {
           hotelRoom: room._id,
           discount: room.discount,
           totalPrice,
-          bookingStatusNumber,
+          bookingStatusNumber: phoneNumber,
         },
       });
 
