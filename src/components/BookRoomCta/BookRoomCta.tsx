@@ -175,7 +175,7 @@ const BookRoomCta: FC<Props> = props => {
         />
       </div>
 
-      <div className='my-4'>
+      <div className='my-4 hidden'>
         <label
           htmlFor='status-phone'
           className='block text-sm font-medium text-gray-900 dark:text-gray-400'

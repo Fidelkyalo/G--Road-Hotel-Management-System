@@ -49,7 +49,7 @@ const Table: FC<Props> = ({
             <th className='px-6 py-3'>Unit Price</th>
             <th className='px-6 py-3'>Price</th>
             <th className='px-6 py-3'>Discount</th>
-            <th className='px-6 py-3'>Status</th>
+            <th className='px-6 py-3 hidden'>Status</th>
             <th className='px-6 py-3'>No. Days Booked</th>
             <th className='px-6 py-3'>Days Left</th>
             <th className='px-6 py-3'></th>
@@ -72,7 +72,7 @@ const Table: FC<Props> = ({
               <td className='px-6 py-4'>{booking.hotelRoom.price}</td>
               <td className='px-6 py-4'>{booking.totalPrice}</td>
               <td className='px-6 py-4'>{booking.discount}</td>
-              <td className='px-6 py-4'>
+              <td className='px-6 py-4 hidden'>
                 <span className={`px-2 py-1 rounded-full text-xs font-semibold ${booking.status === 'paid' ? 'bg-green-100 text-green-800' :
                   booking.status === 'failed' ? 'bg-red-100 text-red-800' :
                     booking.status === 'checked-out' ? 'bg-gray-100 text-gray-800' :
